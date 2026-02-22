@@ -70,7 +70,7 @@ Just replace all that stuff with your actual info. For projects, copy the format
 - **hero-bg.jpg** - big background image for the top 
 - **projects-bg.jpg** - background for projects section
 - **about-bg.jpg** - background for about section  
-- **profile.jpg** - a profesional 
+- **profile.jpg** - a professional headshot or photo
 - **project screenshots** - pictures of your projects
 
 ## Other stuff to change
@@ -112,21 +112,13 @@ If you want different colors, search for `blue-` in the HTML and replace with wh
 
 The font is Inter which looks clean. You can change it by updating the Google Fonts link and the CSS if you want something different.
 
-## Known issues
-
-- The background images might take a sec to load on slow connections
-  
 ## Credits
 
 Made this just for fun. Used some inspiration from other portfolio sites. Feel free to use it for whatever.
 
-If you make something cool with it, let me know! Always interested to see what people build.
+## Troubleshooting
 
-## Help
-
-If something's broken or you can't figure out how to change something, just Google it or ask "ChatGPT". 
-
-The JavaScript console in your browser will show errors if something's not working right.
+The JavaScript console in your browser will show errors if something is not working right.
 
 ---
 

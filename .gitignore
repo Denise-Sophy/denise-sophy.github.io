@@ -1,0 +1,15 @@
+# Environment & credentials
+.env*
+*.pem
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude workspace
+.claude/
