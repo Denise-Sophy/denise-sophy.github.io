@@ -1,254 +1,1073 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Denise Sophy | Cybersecurity Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        background: linear-gradient(to bottom, #0a0f1a, #12161d);
-        color: #f3f4f6;
-      }
-      html { scroll-behavior: smooth; }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denise Sophy — Cybersecurity & Cloud</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1117;
+    --surface2: #131920;
+    --accent: #00e5ff;
+    --accent2: #7b61ff;
+    --accent3: #00ff9d;
+    --text: #e8edf2;
+    --text-dim: #7a8a99;
+    --border: rgba(0,229,255,0.12);
+    --glow: rgba(0,229,255,0.15);
+  }
 
-      .section-bg { position: relative; overflow: hidden; }
-      .section-bg::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-        z-index: 0;
-      }
-      .section-bg > * { position: relative; z-index: 1; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-      .project-card {
-        transition: all 0.3s ease;
-        overflow: hidden;
-      }
-      .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      }
-    </style>
-  </head>
-  <body class="relative overflow-x-hidden">
+  html { scroll-behavior: smooth; }
 
-    <!-- HEADER -->
-    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur bg-white/5 px-6 py-4 flex items-center justify-between border-b border-white/10">
-      <div>
-        <h1 class="text-2xl font-bold">Denise Sophy</h1>
-        <p class="text-sm text-blue-400">Cybersecurity Analyst | SOC | Threat Detection</p>
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.5;
+    transition: all 0.25s ease;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+
+  /* GRID LINES */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(20px);
+    background: rgba(8,12,16,0.8);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--text-dim); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--accent);
+    transform: scaleX(0); transition: transform 0.2s;
+    transform-origin: left;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-inner { max-width: 900px; }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .hero-name .line1 { display: block; color: var(--text); }
+  .hero-name .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  .hero-role strong { color: var(--accent3); font-weight: 400; }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 580px;
+    margin-bottom: 3rem;
+    font-weight: 400;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none; cursor: none;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+  .btn-primary:hover {
+    background: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,229,255,0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    cursor: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: rgba(0,229,255,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* FLOATING ORBS */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  .orb1 { width: 400px; height: 400px; background: rgba(0,229,255,0.06); top: 10%; right: 5%; animation-delay: 0s; }
+  .orb2 { width: 300px; height: 300px; background: rgba(123,97,255,0.08); bottom: 15%; right: 20%; animation-delay: 3s; }
+  .orb3 { width: 200px; height: 200px; background: rgba(0,255,157,0.05); top: 40%; left: 60%; animation-delay: 6s; }
+
+  @keyframes orbFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative; z-index: 2;
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before { content: '//'; color: var(--accent2); }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text-dim);
+    line-height: 1.9;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+  .about-text p strong { color: var(--accent); font-weight: 600; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+    font-family: 'Space Mono', monospace;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-category {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-category::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .skill-category:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-4px); }
+  .skill-category:hover::after { transform: scaleX(1); }
+
+  .skill-icon {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .skill-cat-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.65rem;
+    background: rgba(0,229,255,0.06);
+    color: var(--accent);
+    border: 1px solid rgba(0,229,255,0.15);
+    letter-spacing: 0.05em;
+  }
+  .skill-tag.purple {
+    background: rgba(123,97,255,0.06);
+    color: var(--accent2);
+    border-color: rgba(123,97,255,0.15);
+  }
+  .skill-tag.green {
+    background: rgba(0,255,157,0.06);
+    color: var(--accent3);
+    border-color: rgba(0,255,157,0.15);
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2rem; top: 8px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .timeline-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .timeline-role {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  .timeline-org {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .timeline-points { list-style: none; }
+  .timeline-points li {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-points li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.15rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    transition: height 0.4s;
+  }
+  .project-card:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .project-card:hover::before { height: 100%; }
+  .project-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent2);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(123,97,255,0.08);
+    color: var(--accent2);
+    border: 1px solid rgba(123,97,255,0.2);
+  }
+
+  /* CERTS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .cert-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.03), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .cert-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-3px); }
+  .cert-card:hover::before { opacity: 1; }
+  .cert-badge {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  .cert-info { min-width: 0; }
+  .cert-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+  .cert-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .cert-status-active { color: var(--accent3); }
+  .cert-status-progress { color: var(--accent); }
+
+  /* CONTACT */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-text p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.04); }
+  .contact-link-icon { color: var(--accent); font-size: 1rem; width: 20px; text-align: center; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .form-input, .form-textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { height: 120px; }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 2;
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .footer-text span { color: var(--accent); }
+  .footer-socials { display: flex; gap: 1rem; }
+  .social-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .social-link:hover { color: var(--accent); }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 4rem;
+    width: calc(100% - 8rem);
+    position: relative; z-index: 2;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+
+  /* TERMINAL BLINK */
+  .blink {
+    animation: blink 1.2s step-end infinite;
+    color: var(--accent);
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero, section { padding: 5rem 1.5rem 3rem; }
+    .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 1.5rem; flex-direction: column; text-align: center; }
+    .section-divider { margin: 0 1.5rem; width: calc(100% - 3rem); }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">DS<span>_</span>MUTAYI</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="padding-top:8rem;max-width:100%;">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-tag fade-up">Cybersecurity &amp; Cloud Professional · Nairobi, Kenya</div>
+    <h1 class="hero-name fade-up stagger-1">
+      <span class="line1">Denise Sophy</span>
+      <span class="line2">Ondiso Mutayi</span>
+    </h1>
+    <p class="hero-role fade-up stagger-2">
+      <strong>SOC &amp; Cloud Nerd</strong> · Cybersecurity Intern · NOC Engineer · <strong>Gamer</strong> ·<br>
+      ISC2 CC · Fortinet NSE · Azure Security · @denise_cyber_<span class="blink">_</span>
+    </p>
+    <p class="hero-bio fade-up stagger-3">
+      IT and Cybersecurity graduate on a mission to secure cloud infrastructure and defend digital systems. 
+      Sharing my journey from NOC operations to cloud security — one incident at a time.
+    </p>
+    <div class="hero-actions fade-up stagger-4">
+      <a href="#contact" class="btn-primary">↗ Get in touch</a>
+      <a href="#projects" class="btn-secondary">View my work</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label fade-up">About me</div>
+  <h2 class="section-title fade-up">Building a career at the<br>intersection of <em style="color:var(--accent);font-style:normal;">security</em> &amp; cloud</h2>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>I'm a cybersecurity and IT professional based in <strong>Nairobi, Kenya</strong>, with hands-on experience across NOC operations, security monitoring, endpoint security, and cloud infrastructure.</p>
+      <p>My journey started with a <strong>Diploma and BSc in Information Technology</strong> from JKUAT, and has taken me through internships at the <strong>ICT Authority</strong> and <strong>Kenya Broadcasting Corporation</strong>, into cloud and SOC environments where I work with Azure, Sentinel, and security tooling daily.</p>
+      <p>I'm passionate about <strong>cloud security</strong>, sharing my learning publicly on X as <strong>@denise_cyber_</strong>, and tackling cybersecurity challenges through the <strong>100 Days of Cybersecurity</strong> and Hack The Box. When I'm not in a terminal, I'm gaming.</p>
+    </div>
+    <div class="about-stats fade-up stagger-2">
+      <div class="stat-card">
+        <div class="stat-num">2.5+</div>
+        <div class="stat-label">Years experience</div>
       </div>
-      <nav class="hidden md:flex gap-8 text-md font-medium text-white/80">
-        <a href="#home" class="hover:text-white">Home</a>
-        <a href="#projects" class="hover:text-white">Projects</a>
-        <a href="#about" class="hover:text-white">About & Contact</a>
-      </nav>
-      <div class="flex gap-5 text-xl">
-        <a href="https://github.com/Denise-Sophy" target="_blank" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/denise-sophy-mutayi" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-        <a href="https://x.com/Denise_Sophy_" target="_blank" class="hover:text-blue-400"><i class="fab fa-x-twitter"></i></a>
+      <div class="stat-card">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Certifications</div>
       </div>
-    </header>
-
-    <!-- HERO -->
-    <section id="home" class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
-      <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6">
-        DENISE SOPHY
-      </h2>
-      <p class="text-xl md:text-2xl text-blue-400 mb-8">Cybersecurity Analyst • SOC • Threat Detection</p>
-      
-      <div class="max-w-2xl text-white/80 text-lg leading-relaxed">
-        Cybersecurity Analyst with hands-on experience in security monitoring, incident triage, 
-        and network analysis. Skilled in Microsoft Sentinel, Wireshark, and Nmap. 
-        Currently documenting my journey through the #100DaysOfCybersecurity initiative.
+      <div class="stat-card">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Days SOC practice</div>
       </div>
-
-      <div class="mt-12">
-        <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })" 
-                class="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-full font-semibold text-lg transition">
-          View My Projects ↓
-        </button>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Cloud platforms</div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="min-h-screen px-6 py-20 bg-[#0f1320]">
-      <div class="max-w-6xl mx-auto">
-        <h3 class="text-3xl font-bold mb-12 text-center">Featured Projects & Labs</h3>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-          <!-- Projects will be inserted by JavaScript -->
-        </div>
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label fade-up">Technical arsenal</div>
+  <h2 class="section-title fade-up">Skills &amp; Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-category fade-up">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-cat-title">Cloud Platforms</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft Azure</span>
+        <span class="skill-tag">AWS Foundational</span>
+        <span class="skill-tag">GCP Introductory</span>
+        <span class="skill-tag">Azure VMs</span>
+        <span class="skill-tag">Azure Blob Storage</span>
+        <span class="skill-tag">Cosmos DB</span>
       </div>
-    </section>
-
-    <!-- ABOUT & CONTACT -->
-    <section id="about" class="min-h-screen px-6 py-20">
-      <div class="max-w-5xl mx-auto">
-        <h3 class="text-3xl font-bold mb-12">About Me</h3>
-        
-        <div class="grid lg:grid-cols-5 gap-12">
-          <!-- Left Column - Bio + Skills -->
-          <div class="lg:col-span-3">
-            <p class="text-lg text-white/80 leading-relaxed mb-10">
-              Cybersecurity Analyst with practical experience in SOC operations, incident triage, 
-              network monitoring, and threat detection across enterprise and lab environments. 
-              Passionate about turning raw alerts and logs into actionable security insights.
-            </p>
-
-            <h4 class="text-xl font-semibold mb-6">Technical Skills</h4>
-            <div class="flex flex-wrap gap-3" id="skills-container">
-              <!-- Skills inserted by JS -->
-            </div>
-
-            <a href="resume.pdf" download 
-               class="mt-10 inline-flex items-center gap-3 px-8 py-4 border border-blue-400 text-blue-400 hover:bg-blue-600 hover:text-white rounded-full font-medium transition">
-              <i class="fa-solid fa-download"></i> Download Full Résumé (PDF)
-            </a>
-          </div>
-
-          <!-- Right Column - Education + Contact -->
-          <div class="lg:col-span-2 space-y-8">
-            <div class="bg-[#101820] p-8 rounded-2xl border border-white/10">
-              <h4 class="font-semibold text-lg mb-4">Education</h4>
-              <p class="text-white/80">
-                <strong>Bachelor of Science in Information Technology</strong><br>
-                Jomo Kenyatta University of Agriculture and Technology<br>
-                2022 – 2024
-              </p>
-              <p class="text-white/80 mt-6">
-                <strong>Diploma in Information Technology</strong><br>
-                Jomo Kenyatta University of Agriculture and Technology<br>
-                2019 – 2021
-              </p>
-            </div>
-
-            <div class="bg-[#101820] p-8 rounded-2xl border border-white/10">
-              <h4 class="font-semibold text-lg mb-4">Certifications</h4>
-              <ul class="space-y-3 text-white/80">
-                <li>• ISC² Certified in Cybersecurity (CC) – 2026</li>
-                <li>• IBM Cybersecurity Fundamentals – 2026</li>
-                <li>• Cloud & Network Security – CyberShujaa (USIU) – 2025</li>
-                <li>• TryHackMe SOC Analyst Path – In Progress</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contact -->
-        <div class="mt-20 bg-[#101820] rounded-3xl p-10 text-center border border-white/10">
-          <h4 class="text-2xl font-bold mb-3">Let's Connect</h4>
-          <p class="text-white/70 mb-8">Actively looking for Junior SOC Analyst and Security Operations roles.</p>
-          
-          <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="mailto:denisemutayi@gmail.com" class="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 px-8 py-4 rounded-2xl transition">
-              <i class="fas fa-envelope text-xl"></i>
-              <div>
-                <div class="font-medium">Email</div>
-                <div class="text-sm text-white/60">denisemutayi@gmail.com</div>
-              </div>
-            </a>
-            
-            <a href="tel:+254708123250" class="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 px-8 py-4 rounded-2xl transition">
-              <i class="fas fa-phone text-xl"></i>
-              <div>
-                <div class="font-medium">Phone</div>
-                <div class="text-sm text-white/60">+254 708 123 250</div>
-              </div>
-            </a>
-          </div>
-        </div>
+    </div>
+    <div class="skill-category fade-up stagger-1">
+      <div class="skill-icon">🔐</div>
+      <div class="skill-cat-title">Cloud Security</div>
+      <div class="skill-tags">
+        <span class="skill-tag purple">IAM</span>
+        <span class="skill-tag purple">Azure Defender</span>
+        <span class="skill-tag purple">Microsoft Sentinel</span>
+        <span class="skill-tag purple">Key Management</span>
+        <span class="skill-tag purple">Encryption</span>
+        <span class="skill-tag purple">Compliance Policies</span>
       </div>
-    </section>
+    </div>
+    <div class="skill-category fade-up stagger-2">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-cat-title">Networking</div>
+      <div class="skill-tags">
+        <span class="skill-tag green">TCP/IP</span>
+        <span class="skill-tag green">VNet / VPC</span>
+        <span class="skill-tag green">VPNs</span>
+        <span class="skill-tag green">Firewalls</span>
+        <span class="skill-tag green">DNS / DHCP</span>
+        <span class="skill-tag green">Routing &amp; Switching</span>
+        <span class="skill-tag green">VLANs</span>
+      </div>
+    </div>
+    <div class="skill-category fade-up">
+      <div class="skill-icon">🖥️</div>
+      <div class="skill-cat-title">Monitoring &amp; SOC</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Nagios</span>
+        <span class="skill-tag">Wireshark</span>
+        <span class="skill-tag">Azure Monitor</span>
+        <span class="skill-tag">Splunk</span>
+        <span class="skill-tag">Defender for Cloud</span>
+        <span class="skill-tag">Nmap</span>
+      </div>
+    </div>
+    <div class="skill-category fade-up stagger-1">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-cat-title">Systems &amp; Scripting</div>
+      <div class="skill-tags">
+        <span class="skill-tag purple">Linux</span>
+        <span class="skill-tag purple">Windows Server</span>
+        <span class="skill-tag purple">Active Directory</span>
+        <span class="skill-tag purple">Bash</span>
+        <span class="skill-tag purple">PowerShell</span>
+        <span class="skill-tag purple">Python (Basic)</span>
+      </div>
+    </div>
+    <div class="skill-category fade-up stagger-2">
+      <div class="skill-icon">📋</div>
+      <div class="skill-cat-title">Operations</div>
+      <div class="skill-tags">
+        <span class="skill-tag green">Incident Response</span>
+        <span class="skill-tag green">RCA</span>
+        <span class="skill-tag green">Ticketing Systems</span>
+        <span class="skill-tag green">SLA Management</span>
+        <span class="skill-tag green">Technical Docs</span>
+        <span class="skill-tag green">Vulnerability Assessment</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-      // ==================== YOUR PORTFOLIO DATA ====================
-      const portfolioConfig = {
-        name: "Denise Sophy",
-        title: "Cybersecurity Analyst | SOC | Threat Detection",
-        skills: [
-          "Microsoft Sentinel", "Wireshark", "Nmap", "Log Analysis",
-          "Incident Triage", "MITRE ATT&CK", "Azure Security", "Network Monitoring",
-          "Phishing Analysis", "Vulnerability Assessment", "Python Basics", "Linux Bash"
-        ],
-        projects: [
-          {
-            title: "SOC Hands-on Labs – Packet & Log Analysis",
-            tech: ["Wireshark", "Nmap", "MITRE ATT&CK"],
-            desc: "Simulated real SOC workflows by capturing and analyzing network traffic and system logs.",
-            longDesc: `<b>Key Activities:</b><br>
-              • Captured and analyzed traffic using Wireshark<br>
-              • Investigated alerts and performed incident triage<br>
-              • Mapped attack techniques to MITRE ATT&CK framework<br>
-              • Produced professional SOC-style reports`,
-            images: ["images/splunk-dashboard.jpg", "images/wireshark-capture.jpg"], // add your real images later
-            status: "Ongoing"
-          },
-          {
-            title: "100 Days of Cybersecurity Challenge",
-            tech: ["TryHackMe", "Blue Team Labs", "Documentation"],
-            desc: "Daily technical write-ups and hands-on labs covering SOC operations, GRC, and defensive security.",
-            longDesc: `<b>What I'm Doing:</b><br>
-              • Completing defensive security pathways on TryHackMe<br>
-              • Documenting real-world SOC investigation scenarios<br>
-              • Sharing technical write-ups publicly on X`,
-            images: ["images/100days.jpg"],
-            status: "Ongoing"
-          },
-          {
-            title: "Cloud & Network Security – CyberShujaa",
-            tech: ["Microsoft Azure", "Microsoft Sentinel", "NSGs"],
-            desc: "Configured secure Azure environments and built SIEM monitoring workflows.",
-            longDesc: `<b>Key Deliverables:</b><br>
-              • Configured Network Security Groups, firewalls, and IAM<br>
-              • Built dashboards and alerts in Microsoft Sentinel<br>
-              • Implemented least-privilege access and encryption`,
-            images: ["images/azure-sentinel.jpg"],
-            status: "Completed"
-          }
-        ]
-      };
+<div class="section-divider"></div>
 
-      // Initialize everything
-      function initializePortfolio() {
-        // Skills
-        document.getElementById('skills-container').innerHTML = portfolioConfig.skills
-          .map(skill => `<span class="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm">${skill}</span>`)
-          .join('');
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label fade-up">Career journey</div>
+  <h2 class="section-title fade-up">Work Experience</h2>
+  <div class="timeline fade-up">
 
-        // Projects
-        const grid = document.getElementById('projects-grid');
-        grid.innerHTML = portfolioConfig.projects.map((project, index) => `
-          <div onclick="openProjectModal(${index})" class="project-card bg-[#1a2233] p-6 rounded-2xl cursor-pointer border border-white/10 hover:border-blue-500">
-            <div class="h-48 bg-gray-800 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
-              <span class="text-4xl">🔍</span> <!-- Replace with real images later -->
-            </div>
-            <h4 class="font-bold text-xl mb-2">${project.title}</h4>
-            <div class="flex gap-2 mb-4">
-              <span class="text-xs px-3 py-1 bg-green-700 rounded-full">${project.status}</span>
-            </div>
-            <p class="text-white/70 text-sm line-clamp-3">${project.desc}</p>
-          </div>
-        `).join('');
-      }
+    <div class="timeline-item">
+      <div class="timeline-meta">Jan 2026 – Present · Remote</div>
+      <div class="timeline-role">Cybersecurity Intern — Monitoring &amp; Security Operations</div>
+      <div class="timeline-org">Future Interns</div>
+      <ul class="timeline-points">
+        <li>Monitor system logs and network activity using Microsoft Sentinel (SIEM) to detect threats and anomalies</li>
+        <li>Support end-to-end incident handling — detection, triage, escalation, investigation, and resolution within SLAs</li>
+        <li>Apply security hardening across Windows and Linux environments including patching and firewall review</li>
+        <li>Maintain detailed incident documentation and RCA findings for audit trails and knowledge management</li>
+      </ul>
+    </div>
 
-      // Project Modal (kept simple)
-      function openProjectModal(index) {
-        const project = portfolioConfig.projects[index];
-        alert(`Project: ${project.title}\n\n${project.longDesc.replace(/<br>/g, '\n')}`);
-        // You can improve this modal later if you want a fancy one
-      }
+    <div class="timeline-item">
+      <div class="timeline-meta">Sept 2023 – Dec 2023 · Nairobi, Kenya</div>
+      <div class="timeline-role">Network Operations Centre (NOC) Intern</div>
+      <div class="timeline-org">ICT Authority</div>
+      <ul class="timeline-points">
+        <li>Monitored enterprise infrastructure 24/7 using Nagios and Wireshark across a TCP/IP government network</li>
+        <li>Manned the service desk — triaged, assigned, and tracked incidents via ticketing system within SLAs</li>
+        <li>Conducted root cause analysis on recurring incidents; implemented preventive solutions</li>
+        <li>Supported Active Directory user account management and produced system performance reports</li>
+      </ul>
+    </div>
 
-      // Initialize when page loads
-      document.addEventListener('DOMContentLoaded', initializePortfolio);
-    </script>
-  </body>
+    <div class="timeline-item">
+      <div class="timeline-meta">Oct 2021 – Dec 2021 · Nairobi, Kenya</div>
+      <div class="timeline-role">Technical Support Intern</div>
+      <div class="timeline-org">Kenya Broadcasting Corporation (KBC)</div>
+      <ul class="timeline-points">
+        <li>Provided first-line ICT support across Windows environments via phone, email, and Teams</li>
+        <li>Resolved issues related to system access, connectivity, and endpoint configuration</li>
+        <li>Assisted with Active Directory user setup, access control, and password management</li>
+        <li>Maintained service desk records and educated users on recurring issue resolution</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label fade-up">What I've built</div>
+  <h2 class="section-title fade-up">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card fade-up">
+      <div class="project-num">Project 01 · 2025</div>
+      <div class="project-title">Cloud Infrastructure Implementation on Azure</div>
+      <div class="project-desc">Deployed and secured a full cloud compute environment on Microsoft Azure as part of the CyberShujaa Cloud &amp; Network Security programme. Configured VNets, VPNs, application gateways, Azure Defender, and Sentinel. Secured SQL and NoSQL data services through encryption, IAM, and key management.</div>
+      <div class="project-tags">
+        <span class="project-tag">Microsoft Azure</span>
+        <span class="project-tag">Azure Defender</span>
+        <span class="project-tag">Sentinel</span>
+        <span class="project-tag">VNet / VPN</span>
+        <span class="project-tag">Cosmos DB</span>
+        <span class="project-tag">IAM</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up stagger-1">
+      <div class="project-num">Project 02 · May 2025 – Present</div>
+      <div class="project-title">SOC & Security Operations Practice — 100 Days of Cybersecurity</div>
+      <div class="project-desc">Ongoing personal challenge simulating real-world SOC environments. Performing log analysis, packet inspection, and anomaly detection using SIEM tools and PCAP files. Documenting findings and building repeatable incident response playbooks.</div>
+      <div class="project-tags">
+        <span class="project-tag">SIEM</span>
+        <span class="project-tag">Wireshark</span>
+        <span class="project-tag">Incident Response</span>
+        <span class="project-tag">Log Analysis</span>
+        <span class="project-tag">Threat Detection</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up stagger-2">
+      <div class="project-num">Project 03 · Ongoing</div>
+      <div class="project-title">Linux & Bash Automation Labs — Hack The Box</div>
+      <div class="project-desc">Hands-on labs focused on system privilege management, automated backup and monitoring scripts, and secure shell configurations. Building practical Linux administration and scripting skills in a gamified security environment.</div>
+      <div class="project-tags">
+        <span class="project-tag">Linux</span>
+        <span class="project-tag">Bash Scripting</span>
+        <span class="project-tag">Automation</span>
+        <span class="project-tag">Hack The Box</span>
+        <span class="project-tag">System Hardening</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-label fade-up">Credentials</div>
+  <h2 class="section-title fade-up">Certifications &amp; Training</h2>
+  <div class="certs-grid">
+
+    <div class="cert-card fade-up">
+      <div class="cert-badge">🛡️</div>
+      <div class="cert-info">
+        <div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div>
+        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up stagger-1">
+      <div class="cert-badge">🔵</div>
+      <div class="cert-info">
+        <div class="cert-name">IBM Cybersecurity Fundamentals</div>
+        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up stagger-2">
+      <div class="cert-badge">🔥</div>
+      <div class="cert-info">
+        <div class="cert-name">Fortinet NSE 1 — Network Security</div>
+        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-badge">☁️</div>
+      <div class="cert-info">
+        <div class="cert-name">Cyber Shujaa Cloud &amp; Network Security</div>
+        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2025</div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up stagger-1">
+      <div class="cert-badge">🔥</div>
+      <div class="cert-info">
+        <div class="cert-name">Fortinet NSE 3 — Network Security</div>
+        <div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up stagger-2">
+      <div class="cert-badge">🟠</div>
+      <div class="cert-info">
+        <div class="cert-name">AWS Technical Essentials</div>
+        <div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label fade-up">Let's connect</div>
+  <h2 class="section-title fade-up">Get in touch</h2>
+  <div class="contact-wrapper">
+    <div class="contact-text fade-up">
+      <p>Open to cybersecurity, cloud infrastructure, and NOC/SOC roles. Also happy to connect with other security professionals, share resources, or talk shop about Azure, SIEM tools, or Hack The Box challenges.</p>
+      <div class="contact-links">
+        <a href="mailto:denisemutayi@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉</span> denisemutayi@gmail.com
+        </a>
+        <a href="tel:+254708123250" class="contact-link">
+          <span class="contact-link-icon">📱</span> +254 708 123 250
+        </a>
+        <a href="https://x.com/denise_cyber_" target="_blank" class="contact-link">
+          <span class="contact-link-icon">𝕏</span> @denise_cyber_
+        </a>
+        <a href="https://denise-sophy.github.io" target="_blank" class="contact-link">
+          <span class="contact-link-icon">⌨</span> denise-sophy.github.io
+        </a>
+        <a href="https://www.linkedin.com/in/denise-mutayi" target="_blank" class="contact-link">
+          <span class="contact-link-icon">in</span> LinkedIn Profile
+        </a>
+      </div>
+    </div>
+    <div class="contact-form fade-up stagger-2">
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-input" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="What's on your mind?"></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="alert('Thank you! Denise will be in touch soon.')">Send Message ↗</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">© 2026 <span>Denise Sophy Ondiso Mutayi</span> · Built with intention · Nairobi, Kenya</div>
+  <div class="footer-socials">
+    <a href="https://x.com/denise_cyber_" target="_blank" class="social-link">X / Twitter</a>
+    <a href="https://github.com/denise-sophy" target="_blank" class="social-link">GitHub</a>
+    <a href="https://www.linkedin.com/in/denise-mutayi" target="_blank" class="social-link">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  // CUSTOM CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px)`;
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .skill-category, .project-card, .cert-card, .stat-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(1.8)';
+      ring.style.opacity = '0.8';
+      ring.style.borderColor = 'var(--accent3)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.opacity = '0.5';
+      ring.style.borderColor = 'var(--accent)';
+    });
+  });
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // HERO TYPE EFFECT
+  const tag = document.querySelector('.hero-tag');
+  if (tag) { tag.style.opacity = '1'; }
+</script>
+</body>
 </html>
