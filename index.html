@@ -124,6 +124,13 @@
   }
   .hero-inner { max-width: 900px; }
 
+  .hero-inner {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 4rem;
+    box-sizing: border-box;
+  }
+
   .hero-tag {
     font-family: 'Space Mono', monospace;
     font-size: 0.72rem;
@@ -218,13 +225,19 @@
 
   /* HERO OVERRIDES */
   #hero {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
     min-height: 100vh !important;
     display: flex !important;
     align-items: center !important;
-    padding: 5rem 0 3rem !important;
+    justify-content: center !important;
+    padding: 6rem 0 4rem !important;
+    box-sizing: border-box !important;
   }
 
   /* FLOATING ORBS */
@@ -682,12 +695,11 @@
 </nav>
 
 <!-- HERO -->
-<section id="hero" style="padding-top:8rem;max-width:100%;width:100%;margin:0;min-height:100vh;display:flex;align-items:center;">
+<section id="hero">
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>
-
-  <div class="hero-inner" style="width:100%;max-width:1200px;margin:0 auto;padding:0 4rem;">
+  <div class="hero-inner">
     <div class="hero-tag fade-up">Cybersecurity &amp; Cloud Professional · Nairobi, Kenya</div>
     <h1 class="hero-name fade-up stagger-1">
       <span class="line1">Denise Sophy</span>
@@ -931,7 +943,7 @@
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;" class="fade-up">
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🛡️</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">ISC2</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">CC Domains 1–5 · Network security · Security ops & data handling</div>
@@ -939,7 +951,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">📊</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Splunk</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Intro to Splunk · Log management · Threat detection & incident response</div>
@@ -947,7 +959,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🌐</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cisco NetAcad</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Ethical Hacking · Pen testing methodologies · MITRE ATT&CK · OWASP · NIST</div>
@@ -955,7 +967,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🟥</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Hack The Box</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Linux labs · Bash automation · System hardening · CTF challenges</div>
@@ -963,7 +975,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">☁️</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cyber Shujaa</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cloud & Network Security · Azure VNets · Firewalls · Sentinel deployment</div>
@@ -971,7 +983,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🔵</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">IBM SkillsBuild</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cybersecurity Fundamentals · Threat analysis</div>
@@ -979,7 +991,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🔥</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Fortinet Training</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">NSE 1 certified · NSE 3 in progress · Network security</div>
@@ -987,7 +999,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🟠</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">AWS Skill Builder</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">AWS Technical Essentials · In progress</div>
@@ -995,7 +1007,7 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🔷</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Microsoft Learn</div>
         <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Azure · Sentinel · Defender for Cloud · M365</div>
@@ -1003,10 +1015,10 @@
     </div>
 
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;">🎯</span>
+      <span style="font-size:1.75rem;"></span>
       <div>
         <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">100 Days of Cybersecurity</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Started Sep 16, 2025 · SOC · SIEM · Cloud · Threat modelling</div>
+        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);"> · SOC · SIEM · Cloud · Threat modelling</div>
       </div>
     </div>
 
