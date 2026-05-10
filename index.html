@@ -20,9 +20,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -31,641 +29,323 @@
     cursor: none;
   }
 
-  /* CUSTOM CURSOR */
-  .cursor {
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.15s ease;
-    mix-blend-mode: screen;
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--accent);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 0.5;
-    transition: all 0.25s ease;
-  }
+  .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; mix-blend-mode: screen; }
+  .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; opacity: 0.5; transition: all 0.25s ease; }
 
-  /* NOISE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.4;
-  }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; opacity: 0.4; }
+  body::after { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
 
-  /* GRID LINES */
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.25rem 4rem;
-    display: flex; align-items: center; justify-content: space-between;
-    backdrop-filter: blur(20px);
-    background: rgba(8,12,16,0.8);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-decoration: none;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 4rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(20px); background: rgba(8,12,16,0.8); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; text-decoration: none; }
   .nav-logo span { color: var(--text-dim); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute; bottom: -4px; left: 0; right: 0;
-    height: 1px; background: var(--accent);
-    transform: scaleX(0); transition: transform 0.2s;
-    transform-origin: left;
-  }
+  .nav-links a { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--text-dim); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transition: transform 0.2s; transform-origin: left; }
   .nav-links a:hover { color: var(--accent); }
   .nav-links a:hover::after { transform: scaleX(1); }
 
-  /* HERO */
-  #hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    z-index: 2;
-  }
-  .hero-inner { max-width: 900px; }
-
-  .hero-inner {
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 4rem;
-    box-sizing: border-box;
-  }
-
-  .hero-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .hero-tag::before {
-    content: '';
-    width: 32px; height: 1px;
-    background: var(--accent);
-  }
-
-  .hero-name {
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
+  #hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 4rem 4rem; position: relative; z-index: 2; max-width: 100vw !important; width: 100vw !important; position: relative !important; left: 50% !important; right: 50% !important; margin-left: -50vw !important; margin-right: -50vw !important; min-height: 100vh !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 6rem 0 4rem !important; box-sizing: border-box !important; }
+  .hero-inner { width: 100%; max-width: 1200px; padding: 0 4rem; box-sizing: border-box; }
+  .hero-tag { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+  .hero-name { font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1rem; }
   .hero-name .line1 { display: block; color: var(--text); }
-  .hero-name .line2 {
-    display: block;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-role {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    margin-bottom: 2rem;
-    line-height: 1.8;
-  }
+  .hero-name .line2 { display: block; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-role { font-family: 'Space Mono', monospace; font-size: 0.9rem; color: var(--text-dim); margin-bottom: 2rem; line-height: 1.8; }
   .hero-role strong { color: var(--accent3); font-weight: 400; }
-
-  .hero-bio {
-    font-size: 1.05rem;
-    color: var(--text-dim);
-    line-height: 1.8;
-    max-width: 580px;
-    margin-bottom: 3rem;
-    font-weight: 400;
-  }
-
+  .hero-bio { font-size: 1.05rem; color: var(--text-dim); line-height: 1.8; max-width: 580px; margin-bottom: 3rem; font-weight: 400; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.85rem 2rem;
-    background: var(--accent);
-    color: var(--bg);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none; cursor: none;
-    transition: all 0.2s;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-  }
-  .btn-primary:hover {
-    background: var(--text);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0,229,255,0.3);
-  }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: var(--accent); color: var(--bg); font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: none; cursor: none; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
+  .btn-primary:hover { background: var(--text); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,229,255,0.3); }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: transparent; color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--accent); cursor: none; transition: all 0.2s; }
+  .btn-secondary:hover { background: rgba(0,229,255,0.08); transform: translateY(-2px); }
 
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.85rem 2rem;
-    background: transparent;
-    color: var(--accent);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--accent);
-    cursor: none;
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover {
-    background: rgba(0,229,255,0.08);
-    transform: translateY(-2px);
-  }
-
-  /* HERO OVERRIDES */
-  #hero {
-    max-width: 100vw !important;
-    width: 100vw !important;
-    position: relative !important;
-    left: 50% !important;
-    right: 50% !important;
-    margin-left: -50vw !important;
-    margin-right: -50vw !important;
-    min-height: 100vh !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 6rem 0 4rem !important;
-    box-sizing: border-box !important;
-  }
-
-  /* FLOATING ORBS */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    animation: orbFloat 8s ease-in-out infinite;
-  }
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; animation: orbFloat 8s ease-in-out infinite; }
   .orb1 { width: 400px; height: 400px; background: rgba(0,229,255,0.06); top: 10%; right: 5%; animation-delay: 0s; }
   .orb2 { width: 300px; height: 300px; background: rgba(123,97,255,0.08); bottom: 15%; right: 20%; animation-delay: 3s; }
   .orb3 { width: 200px; height: 200px; background: rgba(0,255,157,0.05); top: 40%; left: 60%; animation-delay: 6s; }
+  @keyframes orbFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
 
-  @keyframes orbFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.05); }
-  }
-
-  /* SECTIONS */
-  section {
-    position: relative; z-index: 2;
-    padding: 6rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
+  section { position: relative; z-index: 2; padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
   .section-label::before { content: '//'; color: var(--accent2); }
+  .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.1; }
 
-  .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 3rem;
-    line-height: 1.1;
-  }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  .about-text p {
-    color: var(--text-dim);
-    line-height: 1.9;
-    font-size: 1rem;
-    margin-bottom: 1.25rem;
-    font-weight: 400;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--text-dim); line-height: 1.9; font-size: 1rem; margin-bottom: 1.25rem; font-weight: 400; }
   .about-text p strong { color: var(--accent); font-weight: 600; }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .stat-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-  }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
   .stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-  .stat-num {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.35rem;
-    font-family: 'Space Mono', monospace;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    font-family: 'Space Mono', monospace;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
+  .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.35rem; font-family: 'Space Mono', monospace; }
+  .stat-label { font-size: 0.75rem; color: var(--text-dim); font-family: 'Space Mono', monospace; letter-spacing: 0.05em; text-transform: uppercase; }
 
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  .skill-category {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .skill-category::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
-  }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .skill-category { background: var(--surface); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.3s, transform 0.3s; position: relative; overflow: hidden; }
+  .skill-category::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent2), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
   .skill-category:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-4px); }
   .skill-category:hover::after { transform: scaleX(1); }
-
-  .skill-icon {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-  }
-  .skill-cat-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
+  .skill-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+  .skill-cat-title { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .skill-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.3rem 0.65rem;
-    background: rgba(0,229,255,0.06);
-    color: var(--accent);
-    border: 1px solid rgba(0,229,255,0.15);
-    letter-spacing: 0.05em;
-  }
-  .skill-tag.purple {
-    background: rgba(123,97,255,0.06);
-    color: var(--accent2);
-    border-color: rgba(123,97,255,0.15);
-  }
-  .skill-tag.green {
-    background: rgba(0,255,157,0.06);
-    color: var(--accent3);
-    border-color: rgba(0,255,157,0.15);
-  }
+  .skill-tag { font-family: 'Space Mono', monospace; font-size: 0.65rem; padding: 0.3rem 0.65rem; background: rgba(0,229,255,0.06); color: var(--accent); border: 1px solid rgba(0,229,255,0.15); letter-spacing: 0.05em; }
+  .skill-tag.purple { background: rgba(123,97,255,0.06); color: var(--accent2); border-color: rgba(123,97,255,0.15); }
+  .skill-tag.green { background: rgba(0,255,157,0.06); color: var(--accent3); border-color: rgba(0,255,157,0.15); }
 
-  /* EXPERIENCE TIMELINE */
   .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before {
-    content: '';
-    position: absolute; left: 0; top: 8px; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-  }
-  .timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
-    padding-left: 2rem;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute; left: -2rem; top: 8px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 12px var(--accent);
-  }
-  .timeline-meta {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-  }
-  .timeline-role {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-  .timeline-org {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
+  .timeline-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+  .timeline-meta { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.5rem; text-transform: uppercase; }
+  .timeline-role { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+  .timeline-org { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem; font-style: italic; }
   .timeline-points { list-style: none; }
-  .timeline-points li {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-    padding-left: 1.25rem;
-    position: relative;
-    margin-bottom: 0.4rem;
-  }
-  .timeline-points li::before {
-    content: '▸';
-    position: absolute; left: 0;
-    color: var(--accent);
-    font-size: 0.7rem;
-    top: 0.15rem;
-  }
+  .timeline-points li { font-size: 0.88rem; color: var(--text-dim); line-height: 1.7; padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+  .timeline-points li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.15rem; }
 
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-  .project-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 3px; height: 0;
-    background: linear-gradient(to bottom, var(--accent), var(--accent2));
-    transition: height 0.4s;
-  }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .project-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden; transition: all 0.3s; }
+  .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: linear-gradient(to bottom, var(--accent), var(--accent2)); transition: height 0.4s; }
   .project-card:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
   .project-card:hover::before { height: 100%; }
-  .project-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--accent2);
-    letter-spacing: 0.15em;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-  .project-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.75rem;
-    line-height: 1.3;
-  }
-  .project-desc {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-  }
+  .project-num { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.15em; margin-bottom: 1rem; text-transform: uppercase; }
+  .project-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; line-height: 1.3; }
+  .project-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1.25rem; }
   .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .project-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    padding: 0.25rem 0.6rem;
-    background: rgba(123,97,255,0.08);
-    color: var(--accent2);
-    border: 1px solid rgba(123,97,255,0.2);
-  }
+  .project-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; padding: 0.25rem 0.6rem; background: rgba(123,97,255,0.08); color: var(--accent2); border: 1px solid rgba(123,97,255,0.2); }
 
-  /* CERTS */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
-  }
-  .cert-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
-    transition: all 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .cert-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,229,255,0.03), transparent);
-    opacity: 0; transition: opacity 0.3s;
-  }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+  .cert-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s; position: relative; overflow: hidden; }
+  .cert-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,229,255,0.03), transparent); opacity: 0; transition: opacity 0.3s; }
   .cert-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-3px); }
   .cert-card:hover::before { opacity: 1; }
-  .cert-badge {
-    width: 42px; height: 42px; flex-shrink: 0;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  }
+  .cert-badge { width: 42px; height: 42px; flex-shrink: 0; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
   .cert-info { min-width: 0; }
-  .cert-name {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.2rem;
-    line-height: 1.3;
-  }
-  .cert-meta {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
+  .cert-name { font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; line-height: 1.3; }
+  .cert-meta { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--text-dim); letter-spacing: 0.05em; }
   .cert-status-active { color: var(--accent3); }
   .cert-status-progress { color: var(--accent); }
 
-  /* CONTACT */
-  .contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+  /* ─── BLOG SECTION ─── */
+  .blog-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
-  .contact-text p {
-    color: var(--text-dim);
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
-  .contact-link {
-    display: flex; align-items: center; gap: 1rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    transition: all 0.2s;
-    letter-spacing: 0.05em;
-  }
-  .contact-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.04); }
-  .contact-link-icon { color: var(--accent); font-size: 1rem; width: 20px; text-align: center; }
+  .blog-header-row .section-title { margin-bottom: 0; }
 
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-label {
+  .btn-medium {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.7rem 1.5rem;
+    background: transparent;
+    color: var(--accent3);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--accent3);
+    cursor: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-medium:hover {
+    background: rgba(0,255,157,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,255,157,0.2);
+  }
+  .btn-medium .medium-m {
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .blog-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    cursor: none;
+  }
+  .blog-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent3), var(--accent));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .blog-card:hover { border-color: rgba(0,255,157,0.25); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .blog-card:hover::before { transform: scaleX(1); }
+
+  .blog-card-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .blog-card-meta .dot { color: var(--text-dim); }
+
+  .blog-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 0.85rem;
+    transition: color 0.2s;
+  }
+  .blog-card:hover .blog-card-title { color: var(--accent3); }
+
+  .blog-card-excerpt {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+    flex-grow: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .blog-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+  .blog-card-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    padding: 0.2rem 0.55rem;
+    background: rgba(0,255,157,0.06);
+    color: var(--accent3);
+    border: 1px solid rgba(0,255,157,0.15);
+  }
+
+  .blog-card-cta {
     font-family: 'Space Mono', monospace;
     font-size: 0.65rem;
     color: var(--accent);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s;
   }
-  .form-input, .form-textarea {
+  .blog-card:hover .blog-card-cta { gap: 0.85rem; color: var(--accent3); }
+
+  /* Loading skeleton */
+  .blog-skeleton {
     background: var(--surface);
     border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    font-size: 0.9rem;
-    padding: 0.85rem 1rem;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
   }
+  .skel-line {
+    height: 12px;
+    background: linear-gradient(90deg, var(--surface2) 25%, rgba(0,229,255,0.04) 50%, var(--surface2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+    border-radius: 2px;
+  }
+  .skel-line.short { width: 40%; }
+  .skel-line.medium { width: 70%; }
+  .skel-line.full { width: 100%; }
+  .skel-line.tall { height: 60px; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* Error / empty state */
+  .blog-static-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .blog-cta-banner {
+    border: 1px dashed rgba(0,255,157,0.2);
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    background: rgba(0,255,157,0.02);
+    transition: border-color 0.3s;
+    margin-top: 1rem;
+  }
+  .blog-cta-banner:hover { border-color: rgba(0,255,157,0.4); }
+  .blog-cta-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+  .blog-cta-text strong { color: var(--accent3); }
+
+  /* ─── END BLOG ─── */
+
+  .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-text p { color: var(--text-dim); font-size: 1rem; line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--text-dim); text-decoration: none; padding: 0.75rem 1rem; border: 1px solid var(--border); background: var(--surface); transition: all 0.2s; letter-spacing: 0.05em; }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.04); }
+  .contact-link-icon { color: var(--accent); font-size: 1rem; width: 20px; text-align: center; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
+  .form-input, .form-textarea { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'Syne', sans-serif; font-size: 0.9rem; padding: 0.85rem 1rem; outline: none; transition: border-color 0.2s; resize: none; }
   .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
   .form-textarea { height: 120px; }
 
-  /* FOOTER */
-  footer {
-    position: relative; z-index: 2;
-    border-top: 1px solid var(--border);
-    padding: 2rem 4rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-text {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
+  footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-text { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.05em; }
   .footer-text span { color: var(--accent); }
   .footer-socials { display: flex; gap: 1rem; }
-  .social-link {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+  .social-link { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--text-dim); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
   .social-link:hover { color: var(--accent); }
 
-  /* DIVIDER */
-  .section-divider {
-    width: 100%; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    margin: 0 4rem;
-    width: calc(100% - 8rem);
-    position: relative; z-index: 2;
-  }
+  .section-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 4rem; width: calc(100% - 8rem); position: relative; z-index: 2; }
 
-  /* ANIMATIONS */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
-
   .stagger-1 { transition-delay: 0.1s; }
   .stagger-2 { transition-delay: 0.2s; }
   .stagger-3 { transition-delay: 0.3s; }
   .stagger-4 { transition-delay: 0.4s; }
 
-  /* TERMINAL BLINK */
-  .blink {
-    animation: blink 1.2s step-end infinite;
-    color: var(--accent);
-  }
+  .blink { animation: blink 1.2s step-end infinite; color: var(--accent); }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-  /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-  /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
@@ -673,6 +353,8 @@
     .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
     footer { padding: 1.5rem; flex-direction: column; text-align: center; }
     .section-divider { margin: 0 1.5rem; width: calc(100% - 3rem); }
+    .blog-header-row { flex-direction: column; align-items: flex-start; }
+    .blog-cta-banner { flex-direction: column; }
   }
 </style>
 </head>
@@ -689,6 +371,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Blog</a></li>
     <li><a href="#certs">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -733,22 +416,10 @@
       <p>I'm passionate about <strong>cloud security</strong>, sharing my learning publicly on X as <strong>@Denise_Sophy_</strong>, and tackling cybersecurity challenges through the <strong>100 Days of Cybersecurity</strong> and Hack The Box. When I'm not in a terminal, I'm gaming.</p>
     </div>
     <div class="about-stats fade-up stagger-2">
-      <div class="stat-card">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Internships & roles</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Certifications</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">100+</div>
-        <div class="stat-label">Days SOC practice</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Cloud platforms</div>
-      </div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Internships & roles</div></div>
+      <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Certifications</div></div>
+      <div class="stat-card"><div class="stat-num">100+</div><div class="stat-label">Days SOC practice</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Cloud platforms</div></div>
     </div>
   </div>
 </section>
@@ -761,76 +432,45 @@
   <h2 class="section-title fade-up">Skills &amp; Technologies</h2>
   <div class="skills-grid">
     <div class="skill-category fade-up">
-      <div class="skill-icon"></div>
+      <div class="skill-icon">☁</div>
       <div class="skill-cat-title">Cloud Platforms</div>
       <div class="skill-tags">
-        <span class="skill-tag">Microsoft Azure</span>
-        <span class="skill-tag">AWS Foundational</span>
-        <span class="skill-tag">GCP Introductory</span>
-        <span class="skill-tag">Azure VMs</span>
-        <span class="skill-tag">Azure Blob Storage</span>
-        <span class="skill-tag">Cosmos DB</span>
+        <span class="skill-tag">Microsoft Azure</span><span class="skill-tag">AWS Foundational</span><span class="skill-tag">GCP Introductory</span><span class="skill-tag">Azure VMs</span><span class="skill-tag">Azure Blob Storage</span><span class="skill-tag">Cosmos DB</span>
       </div>
     </div>
     <div class="skill-category fade-up stagger-1">
-      <div class="skill-icon"></div>
+      <div class="skill-icon">🔐</div>
       <div class="skill-cat-title">Cloud Security</div>
       <div class="skill-tags">
-        <span class="skill-tag purple">IAM</span>
-        <span class="skill-tag purple">Azure Defender</span>
-        <span class="skill-tag purple">Microsoft Sentinel</span>
-        <span class="skill-tag purple">Key Management</span>
-        <span class="skill-tag purple">Encryption</span>
-        <span class="skill-tag purple">Compliance Policies</span>
+        <span class="skill-tag purple">IAM</span><span class="skill-tag purple">Azure Defender</span><span class="skill-tag purple">Microsoft Sentinel</span><span class="skill-tag purple">Key Management</span><span class="skill-tag purple">Encryption</span><span class="skill-tag purple">Compliance Policies</span>
       </div>
     </div>
     <div class="skill-category fade-up stagger-2">
-      <div class="skill-icon"></div>
+      <div class="skill-icon">🌐</div>
       <div class="skill-cat-title">Networking</div>
       <div class="skill-tags">
-        <span class="skill-tag green">TCP/IP</span>
-        <span class="skill-tag green">VNet / VPC</span>
-        <span class="skill-tag green">VPNs</span>
-        <span class="skill-tag green">Firewalls</span>
-        <span class="skill-tag green">DNS / DHCP</span>
-        <span class="skill-tag green">Routing &amp; Switching</span>
-        <span class="skill-tag green">VLANs</span>
+        <span class="skill-tag green">TCP/IP</span><span class="skill-tag green">VNet / VPC</span><span class="skill-tag green">VPNs</span><span class="skill-tag green">Firewalls</span><span class="skill-tag green">DNS / DHCP</span><span class="skill-tag green">Routing &amp; Switching</span><span class="skill-tag green">VLANs</span>
       </div>
     </div>
     <div class="skill-category fade-up">
-      <div class="skill-icon"></div>
+      <div class="skill-icon">📡</div>
       <div class="skill-cat-title">Monitoring &amp; SOC</div>
       <div class="skill-tags">
-        <span class="skill-tag">Nagios</span>
-        <span class="skill-tag">Wireshark</span>
-        <span class="skill-tag">Azure Monitor</span>
-        <span class="skill-tag">Splunk</span>
-        <span class="skill-tag">Defender for Cloud</span>
-        <span class="skill-tag">Nmap</span>
+        <span class="skill-tag">Nagios</span><span class="skill-tag">Wireshark</span><span class="skill-tag">Azure Monitor</span><span class="skill-tag">Splunk</span><span class="skill-tag">Defender for Cloud</span><span class="skill-tag">Nmap</span>
       </div>
     </div>
     <div class="skill-category fade-up stagger-1">
-      <div class="skill-icon"></div>
+      <div class="skill-icon">⚙</div>
       <div class="skill-cat-title">Systems &amp; Scripting</div>
       <div class="skill-tags">
-        <span class="skill-tag purple">Linux</span>
-        <span class="skill-tag purple">Windows Server</span>
-        <span class="skill-tag purple">Active Directory</span>
-        <span class="skill-tag purple">Bash</span>
-        <span class="skill-tag purple">PowerShell</span>
-        <span class="skill-tag purple">Python (Basic)</span>
+        <span class="skill-tag purple">Linux</span><span class="skill-tag purple">Windows Server</span><span class="skill-tag purple">Active Directory</span><span class="skill-tag purple">Bash</span><span class="skill-tag purple">PowerShell</span><span class="skill-tag purple">Python (Basic)</span>
       </div>
     </div>
     <div class="skill-category fade-up stagger-2">
-      <div class="skill-icon"></div>
+      <div class="skill-icon">🎯</div>
       <div class="skill-cat-title">Operations</div>
       <div class="skill-tags">
-        <span class="skill-tag green">Incident Response</span>
-        <span class="skill-tag green">RCA</span>
-        <span class="skill-tag green">Ticketing Systems</span>
-        <span class="skill-tag green">SLA Management</span>
-        <span class="skill-tag green">Technical Docs</span>
-        <span class="skill-tag green">Vulnerability Assessment</span>
+        <span class="skill-tag green">Incident Response</span><span class="skill-tag green">RCA</span><span class="skill-tag green">Ticketing Systems</span><span class="skill-tag green">SLA Management</span><span class="skill-tag green">Technical Docs</span><span class="skill-tag green">Vulnerability Assessment</span>
       </div>
     </div>
   </div>
@@ -843,7 +483,6 @@
   <div class="section-label fade-up">Career journey</div>
   <h2 class="section-title fade-up">Work Experience</h2>
   <div class="timeline fade-up">
-
     <div class="timeline-item">
       <div class="timeline-meta">Jan 2026 – Present · Remote</div>
       <div class="timeline-role">Cybersecurity Intern — Monitoring &amp; Security Operations</div>
@@ -855,7 +494,6 @@
         <li>Maintain detailed incident documentation and RCA findings for audit trails and knowledge management</li>
       </ul>
     </div>
-
     <div class="timeline-item">
       <div class="timeline-meta">Sept 2023 – Dec 2023 · Nairobi, Kenya</div>
       <div class="timeline-role">Network Operations Centre (NOC) Intern</div>
@@ -867,7 +505,6 @@
         <li>Supported Active Directory user account management and produced system performance reports</li>
       </ul>
     </div>
-
     <div class="timeline-item">
       <div class="timeline-meta">Oct 2021 – Dec 2021 · Nairobi, Kenya</div>
       <div class="timeline-role">Technical Support Intern</div>
@@ -879,7 +516,6 @@
         <li>Maintained service desk records and educated users on recurring issue resolution</li>
       </ul>
     </div>
-
   </div>
 </section>
 
@@ -890,49 +526,78 @@
   <div class="section-label fade-up">What I've built</div>
   <h2 class="section-title fade-up">Projects</h2>
   <div class="projects-grid">
-
     <div class="project-card fade-up">
       <div class="project-num">Project 01 · 2025</div>
       <div class="project-title">Cloud Infrastructure Implementation on Azure</div>
       <div class="project-desc">Deployed and secured a full cloud compute environment on Microsoft Azure as part of the CyberShujaa Cloud &amp; Network Security programme. Configured VNets, VPNs, application gateways, Azure Defender, and Sentinel. Secured SQL and NoSQL data services through encryption, IAM, and key management.</div>
-      <div class="project-tags">
-        <span class="project-tag">Microsoft Azure</span>
-        <span class="project-tag">Azure Defender</span>
-        <span class="project-tag">Sentinel</span>
-        <span class="project-tag">VNet / VPN</span>
-        <span class="project-tag">Cosmos DB</span>
-        <span class="project-tag">IAM</span>
-      </div>
+      <div class="project-tags"><span class="project-tag">Microsoft Azure</span><span class="project-tag">Azure Defender</span><span class="project-tag">Sentinel</span><span class="project-tag">VNet / VPN</span><span class="project-tag">Cosmos DB</span><span class="project-tag">IAM</span></div>
     </div>
-
     <div class="project-card fade-up stagger-1">
       <div class="project-num">Project 02 · May 2025 – Present</div>
       <div class="project-title">SOC & Security Operations Practice — 100 Days of Cybersecurity</div>
       <div class="project-desc">Ongoing personal challenge simulating real-world SOC environments. Performing log analysis, packet inspection, and anomaly detection using SIEM tools and PCAP files. Documenting findings and building repeatable incident response playbooks.</div>
-      <div class="project-tags">
-        <span class="project-tag">SIEM</span>
-        <span class="project-tag">Wireshark</span>
-        <span class="project-tag">Incident Response</span>
-        <span class="project-tag">Log Analysis</span>
-        <span class="project-tag">Threat Detection</span>
-      </div>
+      <div class="project-tags"><span class="project-tag">SIEM</span><span class="project-tag">Wireshark</span><span class="project-tag">Incident Response</span><span class="project-tag">Log Analysis</span><span class="project-tag">Threat Detection</span></div>
     </div>
-
     <div class="project-card fade-up stagger-2">
       <div class="project-num">Project 03 · Ongoing</div>
       <div class="project-title">Linux & Bash Automation Labs — Hack The Box</div>
       <div class="project-desc">Hands-on labs focused on system privilege management, automated backup and monitoring scripts, and secure shell configurations. Building practical Linux administration and scripting skills in a gamified security environment.</div>
-      <div class="project-tags">
-        <span class="project-tag">Linux</span>
-        <span class="project-tag">Bash Scripting</span>
-        <span class="project-tag">Automation</span>
-        <span class="project-tag">Hack The Box</span>
-        <span class="project-tag">System Hardening</span>
-      </div>
+      <div class="project-tags"><span class="project-tag">Linux</span><span class="project-tag">Bash Scripting</span><span class="project-tag">Automation</span><span class="project-tag">Hack The Box</span><span class="project-tag">System Hardening</span></div>
     </div>
-
   </div>
 </section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════
+     BLOG SECTION  
+     ════════════════════════════════════════ -->
+<section id="blog">
+  <div class="section-label fade-up">Field notes &amp; write-ups</div>
+  <div class="blog-header-row fade-up">
+    <h2 class="section-title">From the <em style="color:var(--accent3);font-style:normal;">lab</em> to the page</h2>
+    <a href="https://medium.com/@Denise-Sophy" target="_blank" class="btn-medium">
+      <span class="medium-m">M</span> Read all on Medium ↗
+    </a>
+  </div>
+
+  <!-- Posts load here via JS; fallback static cards shown if fetch fails -->
+  <div class="blog-grid fade-up stagger-1" id="blogGrid">
+    <!-- Skeletons shown while loading -->
+    <div class="blog-skeleton" id="skel1">
+      <div class="skel-line short"></div>
+      <div class="skel-line medium"></div>
+      <div class="skel-line full"></div>
+      <div class="skel-line tall"></div>
+      <div class="skel-line short"></div>
+    </div>
+    <div class="blog-skeleton" id="skel2">
+      <div class="skel-line short"></div>
+      <div class="skel-line medium"></div>
+      <div class="skel-line full"></div>
+      <div class="skel-line tall"></div>
+      <div class="skel-line short"></div>
+    </div>
+    <div class="blog-skeleton" id="skel3">
+      <div class="skel-line short"></div>
+      <div class="skel-line medium"></div>
+      <div class="skel-line full"></div>
+      <div class="skel-line tall"></div>
+      <div class="skel-line short"></div>
+    </div>
+  </div>
+
+  <div class="blog-cta-banner fade-up stagger-2">
+    <div class="blog-cta-text">
+      <strong>Writing about:</strong> SIEM &amp; log analysis · PCAP investigations · Azure Sentinel deployments · 
+      100 Days of Cybersecurity · Cloud security labs · Hack The Box write-ups
+    </div>
+    <a href="https://medium.com/@Denise-Sophy" target="_blank" class="btn-medium">
+      Follow on Medium ↗
+    </a>
+  </div>
+</section>
+<!-- ══════════════════════════════════════ -->
 
 <div class="section-divider"></div>
 
@@ -941,87 +606,16 @@
   <div class="section-label fade-up">Always learning</div>
   <h2 class="section-title fade-up">Learning Platforms</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;" class="fade-up">
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">ISC2</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">CC Domains 1–5 · Network security · Security ops & data handling</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Splunk</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Intro to Splunk · Log management · Threat detection & incident response</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cisco NetAcad</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Ethical Hacking · Pen testing methodologies · MITRE ATT&CK · OWASP · NIST</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Hack The Box</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Linux labs · Bash automation · System hardening · CTF challenges</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cyber Shujaa</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cloud & Network Security · Azure VNets · Firewalls · Sentinel deployment</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">IBM SkillsBuild</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cybersecurity Fundamentals · Threat analysis</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Fortinet Training</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">NSE 1 certified · NSE 3 in progress · Network security</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">AWS Skill Builder</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">AWS Cloud Practitioner Essentials · AWS Technical Essentials · In progress</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Microsoft Learn</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Azure · Sentinel · Defender for Cloud · M365</div>
-      </div>
-    </div>
-
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;">
-      <span style="font-size:1.75rem;"></span>
-      <div>
-        <div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">100 Days of Cybersecurity</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Started Sep 16, 2025 · SOC · SIEM · Cloud · Threat modelling</div>
-      </div>
-    </div>
-
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🛡</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">ISC2</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">CC Domains 1–5 · Network security · Security ops & data handling</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">📊</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Splunk</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Intro to Splunk · Log management · Threat detection & incident response</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🦺</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cisco NetAcad</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Ethical Hacking · Pen testing methodologies · MITRE ATT&CK · OWASP · NIST</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">📦</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Hack The Box</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Linux labs · Bash automation · System hardening · CTF challenges</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🇰🇪</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cyber Shujaa</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cloud & Network Security · Azure VNets · Firewalls · Sentinel deployment</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🔵</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">IBM SkillsBuild</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cybersecurity Fundamentals · Threat analysis</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🔶</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Fortinet Training</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">NSE 1 certified · NSE 3 in progress · Network security</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">☁</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">AWS Skill Builder</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">AWS Cloud Practitioner Essentials · AWS Technical Essentials · In progress</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🪟</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Microsoft Learn</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Azure · Sentinel · Defender for Cloud · M365</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">💯</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">100 Days of Cybersecurity</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Started Sep 16, 2025 · SOC · SIEM · Cloud · Threat modelling</div></div></div>
   </div>
 </section>
 
@@ -1032,63 +626,13 @@
   <div class="section-label fade-up">Credentials</div>
   <h2 class="section-title fade-up">Certifications &amp; Training</h2>
   <div class="certs-grid">
-
-    <div class="cert-card fade-up">
-      <div class="cert-badge"></div>
-      <div class="cert-info">
-        <div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div>
-        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div>
-      </div>
-    </div>
-
-    <div class="cert-card fade-up stagger-1">
-      <div class="cert-badge"></div>
-      <div class="cert-info">
-        <div class="cert-name">IBM Cybersecurity Fundamentals</div>
-        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div>
-      </div>
-    </div>
-
-    <div class="cert-card fade-up stagger-2">
-      <div class="cert-badge"></div>
-      <div class="cert-info">
-        <div class="cert-name">Fortinet NSE 1 — Network Security</div>
-        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div>
-      </div>
-    </div>
-
-    <div class="cert-card fade-up">
-      <div class="cert-badge"></div>
-      <div class="cert-info">
-        <div class="cert-name">Cyber Shujaa Cloud &amp; Network Security</div>
-        <div class="cert-meta"><span class="cert-status-active">● Active</span> · 2025</div>
-      </div>
-    </div>
-
-    <div class="cert-card fade-up stagger-1">
-      <div class="cert-badge"></div>
-      <div class="cert-info">
-        <div class="cert-name">Fortinet NSE 3 — Network Security</div>
-        <div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div>
-      </div>
-    </div>
-
-    <div class="cert-card fade-up stagger-2">
-      <div class="cert-badge"></div>
-      <div class="cert-info">
-        <div class="cert-name">AWS Cloud Practitioner Essentials</div>
-        <div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div>
-      </div>
-    </div>
-
-    <div class="cert-card fade-up">
-      <div class="cert-badge"></div>
-      <div class="cert-info">
-        <div class="cert-name">AWS Technical Essentials</div>
-        <div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div>
-      </div>
-    </div>
-
+    <div class="cert-card fade-up"><div class="cert-badge">🛡</div><div class="cert-info"><div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
+    <div class="cert-card fade-up stagger-1"><div class="cert-badge">🔵</div><div class="cert-info"><div class="cert-name">IBM Cybersecurity Fundamentals</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
+    <div class="cert-card fade-up stagger-2"><div class="cert-badge">🔶</div><div class="cert-info"><div class="cert-name">Fortinet NSE 1 — Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-badge">🇰🇪</div><div class="cert-info"><div class="cert-name">Cyber Shujaa Cloud &amp; Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2025</div></div></div>
+    <div class="cert-card fade-up stagger-1"><div class="cert-badge">🔶</div><div class="cert-info"><div class="cert-name">Fortinet NSE 3 — Network Security</div><div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div></div></div>
+    <div class="cert-card fade-up stagger-2"><div class="cert-badge">☁</div><div class="cert-info"><div class="cert-name">AWS Cloud Practitioner Essentials</div><div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div></div></div>
+    <div class="cert-card fade-up"><div class="cert-badge">☁</div><div class="cert-info"><div class="cert-name">AWS Technical Essentials</div><div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div></div></div>
   </div>
 </section>
 
@@ -1102,31 +646,16 @@
     <div class="contact-text fade-up">
       <p>Open to cybersecurity, cloud infrastructure, and NOC/SOC roles. Also happy to connect with other security professionals, share resources, or talk shop about Azure, SIEM tools, or Hack The Box challenges.</p>
       <div class="contact-links">
-
-        <a href="https://x.com/Denise_Sophy_" target="_blank" class="contact-link">
-          <span class="contact-link-icon">𝕏</span> @Denise_Sophy_
-        </a>
-        <a href="https://denise-sophy.github.io" target="_blank" class="contact-link">
-          <span class="contact-link-icon">⌨</span> denise-sophy.github.io
-        </a>
-        <a href="https://www.linkedin.com/in/denisesophymutayi" target="_blank" class="contact-link">
-          <span class="contact-link-icon">in</span> LinkedIn Profile
-        </a>
+        <a href="https://x.com/Denise_Sophy_" target="_blank" class="contact-link"><span class="contact-link-icon">𝕏</span> @Denise_Sophy_</a>
+        <a href="https://medium.com/@Denise-Sophy" target="_blank" class="contact-link"><span class="contact-link-icon">M</span> Medium — @Denise-Sophy</a>
+        <a href="https://denise-sophy.github.io" target="_blank" class="contact-link"><span class="contact-link-icon">⌨</span> denise-sophy.github.io</a>
+        <a href="https://www.linkedin.com/in/denisesophymutayi" target="_blank" class="contact-link"><span class="contact-link-icon">in</span> LinkedIn Profile</a>
       </div>
     </div>
     <div class="contact-form fade-up stagger-2">
-      <div class="form-group">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-input" placeholder="Your name">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-input" placeholder="your@email.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Message</label>
-        <textarea class="form-textarea" placeholder="What's on your mind?"></textarea>
-      </div>
+      <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-input" placeholder="Your name"></div>
+      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+      <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="What's on your mind?"></textarea></div>
       <button class="btn-primary" style="width:100%;justify-content:center;" onclick="alert('Thank you! Denise will be in touch soon.')">Send Message ↗</button>
     </div>
   </div>
@@ -1136,6 +665,7 @@
 <footer>
   <div class="footer-text">© 2026 <span>Denise Sophy Ondiso Mutayi</span> · Built with intention · Nairobi, Kenya</div>
   <div class="footer-socials">
+    <a href="https://medium.com/@Denise-Sophy" target="_blank" class="social-link">Medium</a>
     <a href="https://x.com/Denise_Sophy_" target="_blank" class="social-link">X / Twitter</a>
     <a href="https://github.com/denise-sophy" target="_blank" class="social-link">GitHub</a>
     <a href="https://www.linkedin.com/in/denisesophymutayi/" target="_blank" class="social-link">LinkedIn</a>
@@ -1147,44 +677,141 @@
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX; mouseY = e.clientY;
     cursor.style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px)`;
   });
-
   function animateRing() {
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
+    ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
     ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
     requestAnimationFrame(animateRing);
   }
   animateRing();
-
-  document.querySelectorAll('a, button, .skill-category, .project-card, .cert-card, .stat-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform += ' scale(1.8)';
-      ring.style.opacity = '0.8';
-      ring.style.borderColor = 'var(--accent3)';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.style.opacity = '0.5';
-      ring.style.borderColor = 'var(--accent)';
-    });
+  document.querySelectorAll('a, button, .skill-category, .project-card, .cert-card, .stat-card, .blog-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.opacity = '0.8'; ring.style.borderColor = 'var(--accent3)'; });
+    el.addEventListener('mouseleave', () => { ring.style.opacity = '0.5'; ring.style.borderColor = 'var(--accent)'; });
   });
 
   // SCROLL REVEAL
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
-    });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // HERO TYPE EFFECT
-  const tag = document.querySelector('.hero-tag');
-  if (tag) { tag.style.opacity = '1'; }
+  // ─── MEDIUM BLOG FEED ───────────────────────────────────────────────────────
+  // Medium exposes an RSS feed. We use rss2json.com (free, no key needed for
+  // public feeds) to convert it to JSON so we can fetch it cross-origin.
+  const MEDIUM_USERNAME = 'Denise-Sophy';
+  const MEDIUM_RSS      = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
+  const RSS2JSON        = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS)}&count=6`;
+
+  const TOPIC_COLORS = {
+    'siem': 'green', 'sentinel': 'green', 'soc': 'green',
+    'azure': '', 'cloud': '', 'aws': '',
+    'linux': 'purple', 'bash': 'purple', 'scripting': 'purple',
+    'wireshark': 'purple', 'pcap': 'purple',
+    'incident': '', 'threat': '', 'detection': '',
+  };
+
+  function tagColor(tag) {
+    const lc = tag.toLowerCase();
+    for (const [k, v] of Object.entries(TOPIC_COLORS)) {
+      if (lc.includes(k)) return v;
+    }
+    return '';
+  }
+
+  function stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function readTime(content) {
+    const words = stripHtml(content).split(/\s+/).length;
+    return Math.max(1, Math.round(words / 200)) + ' min read';
+  }
+
+  function buildCard(item) {
+    const title    = item.title || 'Untitled';
+    const link     = item.link  || `https://medium.com/@${MEDIUM_USERNAME}`;
+    const date     = formatDate(item.pubDate);
+    const rt       = readTime(item.content || item.description || '');
+    const rawExc   = stripHtml(item.description || item.content || '');
+    const excerpt  = rawExc.length > 160 ? rawExc.slice(0, 157) + '…' : rawExc;
+    const tags     = (item.categories || []).slice(0, 4);
+
+    const tagHtml = tags.map(t =>
+      `<span class="blog-card-tag ${tagColor(t)}">${t}</span>`
+    ).join('');
+
+    return `
+      <a href="${link}" target="_blank" rel="noopener" class="blog-card">
+        <div class="blog-card-meta">
+          <span>${date}</span>
+          <span class="dot">·</span>
+          <span>${rt}</span>
+        </div>
+        <div class="blog-card-title">${title}</div>
+        <div class="blog-card-excerpt">${excerpt}</div>
+        ${tags.length ? `<div class="blog-card-tags">${tagHtml}</div>` : ''}
+        <div class="blog-card-cta">Read on Medium <span>→</span></div>
+      </a>`;
+  }
+
+  function buildFallbackCards() {
+    // Static placeholder cards pointing straight to Medium when RSS is unavailable
+    const posts = [
+      {
+        title: 'My Latest Write-ups &amp; Labs',
+        excerpt: 'PCAP analyses, Sentinel deployments, SOC simulations and more — all documented on Medium.',
+        tags: ['SOC', 'SIEM', 'Azure Sentinel'],
+      },
+      {
+        title: '100 Days of Cybersecurity — Progress Journal',
+        excerpt: 'Tracking every day of hands-on security practice: tools used, lessons learned, detections made.',
+        tags: ['100DaysOfCyber', 'Log Analysis', 'Threat Detection'],
+      },
+      {
+        title: 'Linux & Bash: Automation Scripts from HTB Labs',
+        excerpt: 'Bash scripts for privilege checks, log parsing, and automated backups built during Hack The Box labs.',
+        tags: ['Linux', 'Bash', 'Automation'],
+      },
+    ];
+    return posts.map((p, i) => `
+      <a href="https://medium.com/@${MEDIUM_USERNAME}" target="_blank" rel="noopener" class="blog-card">
+        <div class="blog-card-meta">
+          <span>Medium · @${MEDIUM_USERNAME}</span>
+        </div>
+        <div class="blog-card-title">${p.title}</div>
+        <div class="blog-card-excerpt">${p.excerpt}</div>
+        <div class="blog-card-tags">${p.tags.map(t => `<span class="blog-card-tag">${t}</span>`).join('')}</div>
+        <div class="blog-card-cta">View on Medium <span>→</span></div>
+      </a>`).join('');
+  }
+
+  async function loadBlogPosts() {
+    const grid = document.getElementById('blogGrid');
+    try {
+      const res  = await fetch(RSS2JSON);
+      const data = await res.json();
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        grid.innerHTML = data.items.slice(0, 6).map(buildCard).join('');
+      } else {
+        grid.innerHTML = buildFallbackCards();
+      }
+    } catch (err) {
+      grid.innerHTML = buildFallbackCards();
+    }
+  }
+
+  loadBlogPosts();
+  // ─────────────────────────────────────────────────────────────────────────────
 </script>
 </body>
 </html>
