@@ -128,187 +128,33 @@
   .cert-status-active { color: var(--accent3); }
   .cert-status-progress { color: var(--accent); }
 
-  /* ─── BLOG SECTION ─── */
-  .blog-header-row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+  .blog-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
   .blog-header-row .section-title { margin-bottom: 0; }
+  .btn-medium { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1.5rem; background: transparent; color: var(--accent3); font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--accent3); cursor: none; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
+  .btn-medium:hover { background: rgba(0,255,157,0.08); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,255,157,0.2); }
+  .btn-medium .medium-m { font-size: 1rem; line-height: 1; font-weight: 900; }
 
-  .btn-medium {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    padding: 0.7rem 1.5rem;
-    background: transparent;
-    color: var(--accent3);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--accent3);
-    cursor: none;
-    transition: all 0.2s;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .btn-medium:hover {
-    background: rgba(0,255,157,0.08);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,255,157,0.2);
-  }
-  .btn-medium .medium-m {
-    font-size: 1rem;
-    line-height: 1;
-    font-weight: 900;
-  }
-
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .blog-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    cursor: none;
-  }
-  .blog-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent3), var(--accent));
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
-  }
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+  .blog-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden; transition: all 0.3s; text-decoration: none; display: flex; flex-direction: column; cursor: none; }
+  .blog-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent3), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
   .blog-card:hover { border-color: rgba(0,255,157,0.25); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
   .blog-card:hover::before { transform: scaleX(1); }
-
-  .blog-card-meta {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--accent3);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
+  .blog-card-meta { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--accent3); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.75rem; }
   .blog-card-meta .dot { color: var(--text-dim); }
-
-  .blog-card-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.4;
-    margin-bottom: 0.85rem;
-    transition: color 0.2s;
-  }
+  .blog-card-title { font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 0.85rem; transition: color 0.2s; }
   .blog-card:hover .blog-card-title { color: var(--accent3); }
-
-  .blog-card-excerpt {
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    line-height: 1.75;
-    flex-grow: 1;
-    margin-bottom: 1.25rem;
-  }
-
-  .blog-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1.25rem;
-  }
-  .blog-card-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
-    padding: 0.2rem 0.55rem;
-    background: rgba(0,255,157,0.06);
-    color: var(--accent3);
-    border: 1px solid rgba(0,255,157,0.15);
-  }
-
-  .blog-card-cta {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: gap 0.2s;
-  }
+  .blog-card-excerpt { font-size: 0.82rem; color: var(--text-dim); line-height: 1.75; flex-grow: 1; margin-bottom: 1.25rem; }
+  .blog-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .blog-card-tag { font-family: 'Space Mono', monospace; font-size: 0.58rem; padding: 0.2rem 0.55rem; background: rgba(0,255,157,0.06); color: var(--accent3); border: 1px solid rgba(0,255,157,0.15); }
+  .blog-card-tag.purple { background: rgba(123,97,255,0.06); color: var(--accent2); border-color: rgba(123,97,255,0.15); }
+  .blog-card-tag.cyan { background: rgba(0,229,255,0.06); color: var(--accent); border-color: rgba(0,229,255,0.15); }
+  .blog-card-cta { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; transition: gap 0.2s; margin-top: auto; }
   .blog-card:hover .blog-card-cta { gap: 0.85rem; color: var(--accent3); }
 
-  /* Loading skeleton */
-  .blog-skeleton {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-  .skel-line {
-    height: 12px;
-    background: linear-gradient(90deg, var(--surface2) 25%, rgba(0,229,255,0.04) 50%, var(--surface2) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.6s infinite;
-    border-radius: 2px;
-  }
-  .skel-line.short { width: 40%; }
-  .skel-line.medium { width: 70%; }
-  .skel-line.full { width: 100%; }
-  .skel-line.tall { height: 60px; }
-  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-  /* Error / empty state */
-  .blog-static-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .blog-cta-banner {
-    border: 1px dashed rgba(0,255,157,0.2);
-    padding: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-    background: rgba(0,255,157,0.02);
-    transition: border-color 0.3s;
-    margin-top: 1rem;
-  }
+  .blog-cta-banner { border: 1px dashed rgba(0,255,157,0.2); padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; background: rgba(0,255,157,0.02); transition: border-color 0.3s; margin-top: 1rem; }
   .blog-cta-banner:hover { border-color: rgba(0,255,157,0.4); }
-  .blog-cta-text {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    line-height: 1.8;
-  }
+  .blog-cta-text { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); line-height: 1.8; }
   .blog-cta-text strong { color: var(--accent3); }
-
-  /* ─── END BLOG ─── */
 
   .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .contact-text p { color: var(--text-dim); font-size: 1rem; line-height: 1.8; margin-bottom: 2rem; }
@@ -330,18 +176,15 @@
   .social-link { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--text-dim); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
   .social-link:hover { color: var(--accent); }
 
-  .section-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 4rem; width: calc(100% - 8rem); position: relative; z-index: 2; }
-
+  .section-divider { width: calc(100% - 8rem); height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 4rem; position: relative; z-index: 2; }
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
   .stagger-1 { transition-delay: 0.1s; }
   .stagger-2 { transition-delay: 0.2s; }
   .stagger-3 { transition-delay: 0.3s; }
   .stagger-4 { transition-delay: 0.4s; }
-
   .blink { animation: blink 1.2s step-end infinite; color: var(--accent); }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
@@ -363,7 +206,6 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">DS<span>_</span>MUTAYI</a>
   <ul class="nav-links">
@@ -377,7 +219,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
@@ -393,7 +234,7 @@
       ISC2 CC · Fortinet NSE · Azure Security · @Denise_Sophy_<span class="blink">|</span>
     </p>
     <p class="hero-bio fade-up stagger-3">
-      IT and Cybersecurity graduate on a mission to secure cloud infrastructure and defend digital systems. 
+      IT and Cybersecurity graduate on a mission to secure cloud infrastructure and defend digital systems.
       Sharing my journey from NOC operations to cloud security — one incident at a time.
     </p>
     <div class="hero-actions fade-up stagger-4">
@@ -405,7 +246,6 @@
 
 <div class="section-divider"></div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label fade-up">About me</div>
   <h2 class="section-title fade-up">Building a career at the<br>intersection of <em style="color:var(--accent);font-style:normal;">security</em> &amp; cloud</h2>
@@ -426,7 +266,6 @@
 
 <div class="section-divider"></div>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-label fade-up">Technical arsenal</div>
   <h2 class="section-title fade-up">Skills &amp; Technologies</h2>
@@ -478,7 +317,6 @@
 
 <div class="section-divider"></div>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-label fade-up">Career journey</div>
   <h2 class="section-title fade-up">Work Experience</h2>
@@ -521,7 +359,6 @@
 
 <div class="section-divider"></div>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label fade-up">What I've built</div>
   <h2 class="section-title fade-up">Projects</h2>
@@ -549,9 +386,7 @@
 
 <div class="section-divider"></div>
 
-<!-- ════════════════════════════════════════
-     BLOG SECTION  
-     ════════════════════════════════════════ -->
+<!-- BLOG — all 13 real articles hardcoded with correct titles, dates, excerpts & links -->
 <section id="blog">
   <div class="section-label fade-up">Field notes &amp; write-ups</div>
   <div class="blog-header-row fade-up">
@@ -560,97 +395,44 @@
       <span class="medium-m">M</span> Read all on Medium ↗
     </a>
   </div>
-
-  <!-- Posts load here via JS; fallback static cards shown if fetch fails -->
-  <div class="blog-grid fade-up stagger-1" id="blogGrid">
-    <!-- Skeletons shown while loading -->
-    <div class="blog-skeleton" id="skel1">
-      <div class="skel-line short"></div>
-      <div class="skel-line medium"></div>
-      <div class="skel-line full"></div>
-      <div class="skel-line tall"></div>
-      <div class="skel-line short"></div>
-    </div>
-    <div class="blog-skeleton" id="skel2">
-      <div class="skel-line short"></div>
-      <div class="skel-line medium"></div>
-      <div class="skel-line full"></div>
-      <div class="skel-line tall"></div>
-      <div class="skel-line short"></div>
-    </div>
-    <div class="blog-skeleton" id="skel3">
-      <div class="skel-line short"></div>
-      <div class="skel-line medium"></div>
-      <div class="skel-line full"></div>
-      <div class="skel-line tall"></div>
-      <div class="skel-line short"></div>
-    </div>
-    <div class="blog-skeleton" id="skel4">
-      <div class="skel-line short"></div>
-      <div class="skel-line medium"></div>
-      <div class="skel-line full"></div>
-      <div class="skel-line tall"></div>
-      <div class="skel-line short"></div>
-    </div>
-    <div class="blog-skeleton" id="skel5">
-      <div class="skel-line short"></div>
-      <div class="skel-line medium"></div>
-      <div class="skel-line full"></div>
-      <div class="skel-line tall"></div>
-      <div class="skel-line short"></div>
-    </div>
-    <div class="blog-skeleton" id="skel6">
-      <div class="skel-line short"></div>
-      <div class="skel-line medium"></div>
-      <div class="skel-line full"></div>
-      <div class="skel-line tall"></div>
-      <div class="skel-line short"></div>
-    </div>
-  </div>
-
+  <div class="blog-grid fade-up stagger-1" id="blogGrid"></div>
   <div class="blog-cta-banner fade-up stagger-2">
     <div class="blog-cta-text">
-      <strong>Writing about:</strong> SIEM &amp; log analysis · PCAP investigations · Azure Sentinel deployments · 
-      100 Days of Cybersecurity · Cloud security labs · Hack The Box write-ups
+      <strong>Writing about:</strong> Phishing analysis · PCAP investigations · C2 traffic hunting · Azure Sentinel · Zero Trust · Bash for analysts · 100 Days of Cybersecurity
     </div>
-    <a href="https://medium.com/@Denise-Sophy" target="_blank" class="btn-medium">
-      Follow on Medium ↗
-    </a>
+    <a href="https://medium.com/@Denise-Sophy" target="_blank" class="btn-medium">Follow on Medium ↗</a>
   </div>
 </section>
-<!-- ══════════════════════════════════════ -->
 
 <div class="section-divider"></div>
 
-<!-- LEARNING PLATFORMS -->
 <section id="learning">
   <div class="section-label fade-up">Always learning</div>
   <h2 class="section-title fade-up">Learning Platforms</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;" class="fade-up">
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">ISC2</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">CC Domains 1–5 · Network security · Security ops & data handling</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Splunk</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Intro to Splunk · Log management · Threat detection & incident response</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cisco NetAcad</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Ethical Hacking · Pen testing methodologies · MITRE ATT&CK · OWASP · NIST</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Hack The Box</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Linux labs · Bash automation · System hardening · CTF challenges</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cyber Shujaa</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cloud & Network Security · Azure VNets · Firewalls · Sentinel deployment</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">IBM SkillsBuild</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cybersecurity Fundamentals · Threat analysis</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Fortinet Training</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">NSE 1 certified · NSE 3 in progress · Network security</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">AWS Skill Builder</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">AWS Cloud Practitioner Essentials · AWS Technical Essentials · In progress</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Microsoft Learn</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Azure · Sentinel · Defender for Cloud · M365</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;"></span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">100 Days of Cybersecurity</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Started Sep 16, 2025 · SOC · SIEM · Cloud · Threat modelling</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🛡</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">ISC2</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">CC Domains 1–5 · Network security · Security ops & data handling</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">📊</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Splunk</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Intro to Splunk · Log management · Threat detection & incident response</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🌐</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cisco NetAcad</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Ethical Hacking · Pen testing methodologies · MITRE ATT&CK · OWASP · NIST</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🎯</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Hack The Box</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Linux labs · Bash automation · System hardening · CTF challenges</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🇰🇪</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cyber Shujaa</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cloud & Network Security · Azure VNets · Firewalls · Sentinel deployment</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">💡</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">IBM SkillsBuild</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cybersecurity Fundamentals · Threat analysis</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🔒</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Fortinet Training</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">NSE 1 certified · NSE 3 in progress · Network security</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">☁</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">AWS Skill Builder</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">AWS Cloud Practitioner Essentials · AWS Technical Essentials · In progress</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">⚡</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Microsoft Learn</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Azure · Sentinel · Defender for Cloud · M365</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">📅</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">100 Days of Cybersecurity</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Started Sep 16, 2025 · SOC · SIEM · Cloud · Threat modelling</div></div></div>
   </div>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- CERTS -->
 <section id="certs">
   <div class="section-label fade-up">Credentials</div>
   <h2 class="section-title fade-up">Certifications &amp; Training</h2>
   <div class="certs-grid">
-    <div class="cert-card fade-up"><div class="cert-badge">🛡</div><div class="cert-info"><div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
     <div class="cert-card fade-up stagger-1"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">IBM Cybersecurity Fundamentals</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
     <div class="cert-card fade-up stagger-2"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Fortinet NSE 1 — Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
-    <div class="cert-card fade-up"><div class="cert-badge">🇰🇪</div><div class="cert-info"><div class="cert-name">Cyber Shujaa Cloud &amp; Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2025</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Cyber Shujaa Cloud &amp; Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2025</div></div></div>
     <div class="cert-card fade-up stagger-1"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Fortinet NSE 3 — Network Security</div><div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div></div></div>
     <div class="cert-card fade-up stagger-2"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">AWS Cloud Practitioner Essentials</div><div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div></div></div>
     <div class="cert-card fade-up"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">AWS Technical Essentials</div><div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div></div></div>
@@ -659,7 +441,6 @@
 
 <div class="section-divider"></div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-label fade-up">Let's connect</div>
   <h2 class="section-title fade-up">Get in touch</h2>
@@ -682,7 +463,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-text">© 2026 <span>Denise Sophy Ondiso Mutayi</span> · Built with intention · Nairobi, Kenya</div>
   <div class="footer-socials">
@@ -696,158 +476,169 @@
 <script>
   // CUSTOM CURSOR
   const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
+  const ring   = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX; mouseY = e.clientY;
-    cursor.style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px)`;
+    cursor.style.transform = `translate(${mouseX-5}px,${mouseY-5}px)`;
   });
-  function animateRing() {
+  (function animateRing() {
     ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
-    ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+    ring.style.transform = `translate(${ringX-18}px,${ringY-18}px)`;
     requestAnimationFrame(animateRing);
-  }
-  animateRing();
-  document.querySelectorAll('a, button, .skill-category, .project-card, .cert-card, .stat-card, .blog-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { ring.style.opacity = '0.8'; ring.style.borderColor = 'var(--accent3)'; });
-    el.addEventListener('mouseleave', () => { ring.style.opacity = '0.5'; ring.style.borderColor = 'var(--accent)'; });
-  });
+  })();
 
   // SCROLL REVEAL
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  const io = new IntersectionObserver(entries =>
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  // ─── MEDIUM BLOG FEED ───────────────────────────────────────────────────────
-  // Medium exposes an RSS feed. We use rss2json.com (free, no key needed for
-  // public feeds) to convert it to JSON so we can fetch it cross-origin.
-  const MEDIUM_USERNAME = 'Denise-Sophy';
-  const MEDIUM_RSS      = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
-  const RSS2JSON        = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS)}&count=6`;
-  const POSTS_TO_SHOW   = 6;
+  // ── BLOG: your actual 13 articles, newest first ──────────────────────────────
+  const POSTS = [
+    {
+      title:   'Phishing Analysis Lab: Blue Team Lab Walkthrough',
+      link:    'https://medium.com/@Denise-Sophy/phishing-analysis-lab-blue-team-lab-walkthrough-899363cd1e25',
+      date:    'Jun 2026',
+      excerpt: 'Hands-on SOC investigation of a social engineering phishing campaign — triage, artifact analysis, and defensive recommendations from a real Blue Team lab.',
+      tags:    ['Phishing', 'Blue Team', 'SOC', 'Incident Response'],
+    },
+    {
+      title:   'Zero Trust Security: Why We Must Assume the Enemy Is Already Inside',
+      link:    'https://medium.com/@Denise-Sophy/zero-trust-security-why-we-must-assume-the-enemy-is-already-inside-68e36679dcbd',
+      date:    'May 20, 2026',
+      excerpt: 'Traditional cybersecurity operates on one dangerous assumption: "Our network is secure until proven otherwise." Zero Trust flips that entirely — never trust, always verify.',
+      tags:    ['Zero Trust', 'Cloud Security', 'Identity'],
+    },
+    {
+      title:   'Lab Report: Hunting C2 Traffic in a Typosquatted Malvertising Scenario',
+      link:    'https://medium.com/@Denise-Sophy/lab-report-hunting-c2-traffic-in-a-typosquatted-malvertising-scenario-d0266703ac43',
+      date:    'Mar 23, 2026',
+      excerpt: 'Day 52 of 100 Days of Cybersecurity: a step-by-step breakdown of how I identified a domain compromise starting from a single PCAP.',
+      tags:    ['C2 Traffic', 'PCAP', 'Threat Hunting', '100DaysOfCyber'],
+    },
+    {
+      title:   'Unmasking Lumma Stealer: A Blind PCAP Analysis Walkthrough',
+      link:    'https://medium.com/@Denise-Sophy/unmasking-lumma-stealer-a-blind-pcap-analysis-walkthrough-36060a9d1811',
+      date:    'Mar 19, 2026',
+      excerpt: 'A "blind" incident response challenge: analyzing an unknown PCAP to identify Lumma Stealer — speed and accuracy in a simulated SOC environment.',
+      tags:    ['Malware Analysis', 'PCAP', 'Wireshark', 'SOC'],
+    },
+    {
+      title:   'Beyond the GUI: Why Bash is a Security Analyst\'s Secret Weapon',
+      link:    'https://medium.com/@Denise-Sophy/beyond-the-gui-why-bash-is-a-security-analysts-secret-weapon-070b6001e58f',
+      date:    'Mar 10, 2026',
+      excerpt: 'Day 42 of #100DaysOfCybersecurity — why every SOC analyst should get comfortable in the terminal and how Bash supercharges log triage and automation.',
+      tags:    ['Bash', 'Linux', 'SOC', '100DaysOfCyber'],
+    },
+    {
+      title:   'Day 13 — Logs and Log Monitoring',
+      link:    'https://medium.com/@Denise-Sophy/day-13-logs-and-log-monitoring-b84ba8f3c38e',
+      date:    'Oct 27, 2025',
+      excerpt: 'Day 13 of 100 Days of Cybersecurity — a deep dive into log monitoring and analysis: what to collect, where to look, and how to make sense of the noise.',
+      tags:    ['Log Analysis', 'SIEM', '100DaysOfCyber', 'Monitoring'],
+    },
+    {
+      title:   'Day 10/100 — The Anatomy of a SOC: Learning to See Like a Defender',
+      link:    'https://medium.com/@Denise-Sophy/day-10-100-the-anatomy-of-a-soc-learning-to-see-like-a-defender-35691394cabb',
+      date:    'Oct 17, 2025',
+      excerpt: 'We romanticize cybersecurity sometimes — glowing dashboards, elite analysts, the rush of protection. Day 10 breaks down how a SOC actually operates.',
+      tags:    ['SOC', 'Blue Team', '100DaysOfCyber'],
+    },
+    {
+      title:   '100 Days of Cybersecurity — Week 1 Recap',
+      link:    'https://medium.com/@Denise-Sophy/100-days-of-cybersecurity-week-1-recap-c8da01dcc50e',
+      date:    'Oct 7, 2025',
+      excerpt: 'Wrapping up the first week of #100DaysOfCybersecurity: what I covered, what surprised me, and why I am doing this publicly.',
+      tags:    ['100DaysOfCyber', 'SOC', 'Career'],
+    },
+    {
+      title:   'Day 2 of 100 Days in Cybersecurity: SOC Fundamentals & Splunk Exploration',
+      link:    'https://medium.com/@Denise-Sophy/day-2-of-100-days-in-cybersecurity-soc-fundamentals-splunk-exploration-864d7b7ae88e',
+      date:    'Sep 18, 2025',
+      excerpt: 'Every defense tells a story. Day 2 unpacks how SOC analysts think — MITRE ATT&CK, OWASP WSTG, pen testing frameworks, and first hands-on Splunk session.',
+      tags:    ['SOC', 'Splunk', 'MITRE ATT&CK', '100DaysOfCyber'],
+    },
+    {
+      title:   'From Zero to Azure Security Hero: My Hands-On Experience with Microsoft Sentinel & Defender',
+      link:    'https://medium.com/@Denise-Sophy/from-zero-to-azure-security-hero-my-hands-on-experience-with-microsoft-sentinel-defender-for-b7537d1de429',
+      date:    'Aug 3, 2025',
+      excerpt: 'A practical walkthrough of deploying Microsoft Sentinel and Defender for Cloud on Azure — from onboarding data connectors to writing your first detection rules.',
+      tags:    ['Azure Sentinel', 'Defender for Cloud', 'SIEM', 'Azure'],
+    },
+    {
+      title:   'Introduction to Web Applications — Security & Architecture Lab',
+      link:    'https://medium.com/@Denise-Sophy/introduction-to-web-applications-security-architecture-lab-8d421caeb886',
+      date:    'Jul 23, 2025',
+      excerpt: 'Full-stack architecture of modern web apps — HTML, CSS, JS, APIs, databases — analyzed through a security lens: XSS, CSRF, SQL Injection, Command Injection.',
+      tags:    ['Web Security', 'XSS', 'OWASP', 'SQL Injection'],
+    },
+    {
+      title:   'Site-to-Site IPsec VPN Configuration in Cisco Packet Tracer',
+      link:    'https://medium.com/@Denise-Sophy/site-to-site-ipsec-vpn-configuration-in-cisco-packet-tracer-f5d069792f64',
+      date:    'Jul 23, 2025',
+      excerpt: 'Configuring and verifying a site-to-site IPsec VPN tunnel between two routers using Cisco IOS CLI — step by step with verification commands.',
+      tags:    ['VPN', 'IPsec', 'Cisco', 'Networking'],
+    },
+    {
+      title:   'Deploying and Testing Azure Firewall',
+      link:    'https://medium.com/@Denise-Sophy/deploying-and-testing-azure-firewall-e139151bbd0b',
+      date:    'Jul 23, 2025',
+      excerpt: 'Hands-on lab deploying Azure Firewall via ARM templates, configuring application and network rules, and validating traffic flow through route tables.',
+      tags:    ['Azure Firewall', 'Azure', 'Cloud Security', 'Networking'],
+    },
+  ];
 
-  const TOPIC_COLORS = {
-    'siem': 'green', 'sentinel': 'green', 'soc': 'green',
-    'azure': '', 'cloud': '', 'aws': '',
-    'linux': 'purple', 'bash': 'purple', 'scripting': 'purple',
-    'wireshark': 'purple', 'pcap': 'purple',
-    'incident': '', 'threat': '', 'detection': '',
+  const TAG_CLASS = {
+    soc:'green', siem:'green', sentinel:'green', splunk:'green', 'blue team':'green', monitoring:'green',
+    azure:'cyan', cloud:'cyan', defender:'cyan',
+    bash:'purple', linux:'purple', pcap:'purple', wireshark:'purple', malware:'purple',
   };
 
-  function tagColor(tag) {
-    const lc = tag.toLowerCase();
-    for (const [k, v] of Object.entries(TOPIC_COLORS)) {
-      if (lc.includes(k)) return v;
-    }
+  function tagClass(t) {
+    const lc = t.toLowerCase();
+    for (const [k,v] of Object.entries(TAG_CLASS)) { if (lc.includes(k)) return v; }
     return '';
   }
 
-  function stripHtml(html) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || '';
-  }
-
-  function formatDate(dateStr) {
-    const d = new Date(dateStr);
-    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-  }
-
-  function readTime(content) {
-    const words = stripHtml(content).split(/\s+/).length;
-    return Math.max(1, Math.round(words / 200)) + ' min read';
-  }
-
-  function buildCard(item) {
-    const title    = item.title || 'Untitled';
-    const link     = item.link  || `https://medium.com/@${MEDIUM_USERNAME}`;
-    const date     = formatDate(item.pubDate);
-    const rt       = readTime(item.content || item.description || '');
-    const rawExc   = stripHtml(item.description || item.content || '');
-    const excerpt  = rawExc.length > 160 ? rawExc.slice(0, 157) + '…' : rawExc;
-    const tags     = (item.categories || []).slice(0, 4);
-
-    const tagHtml = tags.map(t =>
-      `<span class="blog-card-tag ${tagColor(t)}">${t}</span>`
+  function buildCard(p) {
+    const tagHtml = p.tags.map(t =>
+      `<span class="blog-card-tag ${tagClass(t)}">${t}</span>`
     ).join('');
-
     return `
-      <a href="${link}" target="_blank" rel="noopener" class="blog-card">
-        <div class="blog-card-meta">
-          <span>${date}</span>
-          <span class="dot">·</span>
-          <span>${rt}</span>
-        </div>
-        <div class="blog-card-title">${title}</div>
-        <div class="blog-card-excerpt">${excerpt}</div>
-        ${tags.length ? `<div class="blog-card-tags">${tagHtml}</div>` : ''}
+      <a href="${p.link}" target="_blank" rel="noopener" class="blog-card">
+        <div class="blog-card-meta"><span>${p.date}</span></div>
+        <div class="blog-card-title">${p.title}</div>
+        <div class="blog-card-excerpt">${p.excerpt}</div>
+        <div class="blog-card-tags">${tagHtml}</div>
         <div class="blog-card-cta">Read on Medium <span>→</span></div>
       </a>`;
   }
 
-  function buildFallbackCards() {
-    // Static placeholder cards pointing straight to Medium when RSS is unavailable
-    const posts = [
-      {
-        title: 'My Latest Write-ups &amp; Labs',
-        excerpt: 'PCAP analyses, Sentinel deployments, SOC simulations and more — all documented on Medium.',
-        tags: ['SOC', 'SIEM', 'Azure Sentinel'],
-      },
-      {
-        title: '100 Days of Cybersecurity — Progress Journal',
-        excerpt: 'Tracking every day of hands-on security practice: tools used, lessons learned, detections made.',
-        tags: ['100DaysOfCyber', 'Log Analysis', 'Threat Detection'],
-      },
-      {
-        title: 'Linux & Bash: Automation Scripts from HTB Labs',
-        excerpt: 'Bash scripts for privilege checks, log parsing, and automated backups built during Hack The Box labs.',
-        tags: ['Linux', 'Bash', 'Automation'],
-      },
-      {
-        title: 'Building a Sentinel SIEM Lab on Azure',
-        excerpt: 'Step-by-step walkthrough of deploying Microsoft Sentinel, connecting data sources, and writing KQL detection rules.',
-        tags: ['Azure', 'Microsoft Sentinel', 'Cloud Security'],
-      },
-      {
-        title: 'PCAP Analysis: Spotting Malicious Traffic with Wireshark',
-        excerpt: 'How I approach packet capture files — filters, protocols to watch, and patterns that signal something is wrong.',
-        tags: ['Wireshark', 'PCAP', 'Network Security'],
-      },
-      {
-        title: 'Azure IAM Best Practices for a Zero-Trust Posture',
-        excerpt: 'Practical identity and access management patterns I learned while deploying cloud infrastructure at CyberShujaa.',
-        tags: ['Azure', 'IAM', 'Cloud Security'],
-      },
-    ];
-    return posts.map((p, i) => `
-      <a href="https://medium.com/@${MEDIUM_USERNAME}" target="_blank" rel="noopener" class="blog-card">
-        <div class="blog-card-meta">
-          <span>Medium · @${MEDIUM_USERNAME}</span>
-        </div>
-        <div class="blog-card-title">${p.title}</div>
-        <div class="blog-card-excerpt">${p.excerpt}</div>
-        <div class="blog-card-tags">${p.tags.map(t => `<span class="blog-card-tag">${t}</span>`).join('')}</div>
-        <div class="blog-card-cta">View on Medium <span>→</span></div>
-      </a>`).join('');
+  // Render top 6 posts immediately; "Read all" button shows the rest
+  const grid = document.getElementById('blogGrid');
+  let showing = 6;
+
+  function render() {
+    grid.innerHTML = POSTS.slice(0, showing).map(buildCard).join('');
+    attachHover();
   }
 
-  async function loadBlogPosts() {
-    const grid = document.getElementById('blogGrid');
-    try {
-      const res  = await fetch(RSS2JSON);
-      const data = await res.json();
-      if (data.status === 'ok' && data.items && data.items.length > 0) {
-        grid.innerHTML = data.items.slice(0, POSTS_TO_SHOW).map(buildCard).join('');
-      } else {
-        grid.innerHTML = buildFallbackCards();
-      }
-    } catch (err) {
-      grid.innerHTML = buildFallbackCards();
-    }
+  function attachHover() {
+    grid.querySelectorAll('.blog-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.opacity='0.8'; ring.style.borderColor='var(--accent3)'; });
+      el.addEventListener('mouseleave', () => { ring.style.opacity='0.5'; ring.style.borderColor='var(--accent)'; });
+    });
   }
 
-  loadBlogPosts();
+  render();
+
+  // Attach hover to static interactive elements too
+  document.querySelectorAll('a, button, .skill-category, .project-card, .cert-card, .stat-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.opacity='0.8'; ring.style.borderColor='var(--accent3)'; });
+    el.addEventListener('mouseleave', () => { ring.style.opacity='0.5'; ring.style.borderColor='var(--accent)'; });
+  });
   // ─────────────────────────────────────────────────────────────────────────────
 </script>
 </body>
