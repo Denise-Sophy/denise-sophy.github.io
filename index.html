@@ -189,6 +189,11 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
+  .feat-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+  .feat-text { max-width: 760px; }
+  .feat-text p { color: var(--text-dim); line-height: 1.85; font-size: 0.95rem; margin-bottom: 1.1rem; }
+  .feat-text p strong { color: var(--accent); font-weight: 600; }
+
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
@@ -210,6 +215,7 @@
   <a href="#" class="nav-logo">DS<span>_</span>MUTAYI</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#featured">Featured</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -233,7 +239,7 @@
       <strong>AI Engineer</strong> building intelligent systems, agent workflows, and secure cloud solutions.<span class="blink">|</span>
     </p>
     <p class="hero-bio fade-up stagger-3">
-      Python · LLMs · Agentic AI · RAG · Cloud · Security — currently Lead AI Engineer at Romel Ventures,
+      Python · LLMs · Agentic AI · RAG · Cloud · Security — currently AI Engineer at Romel Ventures,
       building Akili, a Claude-powered operations platform live across three clients.
     </p>
     <div class="hero-actions fade-up stagger-4">
@@ -258,8 +264,8 @@
   <h2 class="section-title fade-up">Building AI systems<br>businesses <em style="color:var(--accent);font-style:normal;">run on</em></h2>
   <div class="about-grid">
     <div class="about-text fade-up">
-      <p>I'm an <strong>AI Engineer</strong> based in Nairobi, Kenya, currently leading the end-to-end development of <strong>Akili</strong> — a Claude-powered operations platform integrating Slack, Fireflies, and Google Workspace across a live 15-channel workspace for Romel Ventures.</p>
-      <p>My work spans <strong>agent architecture</strong>, RAG-based knowledge retrieval, context engineering, and multi-step AI workflows — translating business requirements into production systems for real clients, including AI advisory engagements for portfolio companies.</p>
+      <p>I'm an <strong>AI Engineer</strong> based in Nairobi, Kenya, currently building <strong>Akili</strong> — a Claude-powered operations platform integrating Slack, Fireflies, and Google Workspace across a live 15-channel workspace for Romel Ventures.</p>
+      <p>My work spans <strong>agent architecture</strong>, RAG-based knowledge retrieval, context engineering, and multi-step AI workflows — translating business requirements into production systems for real clients, including AI consulting work for portfolio companies.</p>
       <p>That AI work is backed by a <strong>security-conscious foundation</strong>: a Diploma and BSc in Information Technology from JKUAT, internships at ICT Authority and Kenya Broadcasting Corporation, and hands-on cloud security training through CyberShujaa. I design AI and cloud solutions with security built in, not bolted on.</p>
       <p style="font-family:'Space Mono',monospace; font-size:0.8rem; color:var(--accent3); border-left:2px solid var(--accent3); padding-left:1rem; margin-top:1.5rem;">I don't just build AI systems — I think about what happens when they meet production. IAM · data handling · cloud security · threat detection · secure architecture.</p>
     </div>
@@ -268,6 +274,20 @@
       <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Live AI client deployments</div></div>
       <div class="stat-card"><div class="stat-num">13+</div><div class="stat-label">Technical write-ups</div></div>
       <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Certifications</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="featured">
+  <div class="section-label fade-up">Featured build</div>
+  <h2 class="section-title fade-up">A governed multi-agent system,<br><em style="color:var(--accent);font-style:normal;">measured not assumed</em></h2>
+  <div class="feat-text fade-up">
+    <p><strong>Akili demo</strong> is an MCP server with auth, access control, audit logging and PII masking on AWS Lambda, with Claude agents on top and evals that test whether multi-agent is worth it. At 9 tools, a single agent matched it while being 17% cheaper and 45% faster.</p>
+    <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">MCP</span><span class="project-tag">Strands Agents</span><span class="project-tag">Claude</span><span class="project-tag">AWS Lambda</span><span class="project-tag">GitHub Actions</span></div>
+    <div class="feat-links">
+      <a href="https://github.com/Denise-Sophy/akili-demo" target="_blank" rel="noopener" class="btn-primary">↗ View repo</a>
     </div>
   </div>
 </section>
@@ -289,14 +309,14 @@
       <div class="skill-icon"></div>
       <div class="skill-cat-title">AI Systems</div>
       <div class="skill-tags">
-        <span class="skill-tag purple">Agent Architecture</span><span class="skill-tag purple">Workflow Orchestration</span><span class="skill-tag purple">API Integration</span><span class="skill-tag purple">Automation</span><span class="skill-tag purple">Fault Isolation</span>
+        <span class="skill-tag purple">Agent Architecture</span><span class="skill-tag purple">Workflow Orchestration</span><span class="skill-tag purple">API Integration</span><span class="skill-tag purple">Automation</span><span class="skill-tag purple">Fault Isolation</span><span class="skill-tag purple">MCP</span><span class="skill-tag purple">Agent Evals</span><span class="skill-tag purple">Strands Agents</span><span class="skill-tag purple">Audit &amp; PII Masking</span>
       </div>
     </div>
     <div class="skill-category fade-up stagger-2">
       <div class="skill-icon"></div>
       <div class="skill-cat-title">Cloud &amp; Infrastructure</div>
       <div class="skill-tags">
-        <span class="skill-tag green">Microsoft Azure</span><span class="skill-tag green">AWS</span><span class="skill-tag green">REST APIs</span><span class="skill-tag green">Git</span><span class="skill-tag green">Cloud Architecture</span>
+        <span class="skill-tag green">Microsoft Azure</span><span class="skill-tag green">AWS</span><span class="skill-tag green">REST APIs</span><span class="skill-tag green">Git</span><span class="skill-tag green">Cloud Architecture</span><span class="skill-tag green">AWS Lambda</span><span class="skill-tag green">CloudWatch</span><span class="skill-tag green">GitHub Actions CI</span>
       </div>
     </div>
     <div class="skill-category fade-up">
@@ -324,12 +344,12 @@
   <div class="timeline fade-up">
     <div class="timeline-item">
       <div class="timeline-meta">Jun 2026 – Present · Remote</div>
-      <div class="timeline-role">Lead AI Engineer &amp; AI Advisory Lead</div>
+      <div class="timeline-role">AI Engineer</div>
       <div class="timeline-org">Romel Ventures</div>
       <ul class="timeline-points">
         <li>Own end-to-end development of Akili, a multi-module AI operations system integrating Claude, Slack, Fireflies, and Google Workspace across a live 15-channel Slack workspace</li>
         <li>Designed and iterated Akili through 12+ architecture versions, evolving from a brittle keyword-matching prototype into a modular, fault-isolated architecture</li>
-        <li>Lead AI consulting engagements for portfolio companies, including an AI-powered CV screening proof of concept for an enterprise workforce management client</li>
+        <li>Deliver AI consulting work for portfolio companies, including an AI-powered CV screening proof of concept for an enterprise workforce management client</li>
         <li>Produce technical architecture documentation and executive handover materials translating AI capabilities for non-technical stakeholders</li>
       </ul>
     </div>
@@ -438,7 +458,7 @@
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🎯</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Hack The Box</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Linux labs · Bash automation · System hardening · CTF challenges</div></div></div>
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🇰🇪</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Cyber Shujaa</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cloud & Network Security · Azure VNets · Firewalls · Sentinel deployment</div></div></div>
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">💡</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">IBM SkillsBuild</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Cybersecurity Fundamentals · Threat analysis</div></div></div>
-    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🔒</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Fortinet Training</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">NSE 1 &amp; NSE 3 certified · Network security</div></div></div>
+    <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">🔒</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Fortinet Training</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">NSE 1, 2 &amp; 3 certified · Network security</div></div></div>
     <div class="stat-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;"><span style="font-size:1.75rem;">📅</span><div><div style="font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">100 Days of Cybersecurity</div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--text-dim);">Started Sep 16, 2025 · SOC · SIEM · Cloud · Threat modelling</div></div></div>
   </div>
 </section>
@@ -452,6 +472,7 @@
     <div class="cert-card fade-up"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
     <div class="cert-card fade-up stagger-1"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">IBM Cybersecurity Fundamentals</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
     <div class="cert-card fade-up stagger-2"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Fortinet NSE 1 — Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Fortinet NSE 2 — Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
     <div class="cert-card fade-up"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Cyber Shujaa Cloud &amp; Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2025</div></div></div>
     <div class="cert-card fade-up stagger-1"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Fortinet NSE 3 — Network Security</div><div class="cert-meta"><span class="cert-status-active">● Active</span> · 2026</div></div></div>
     <div class="cert-card fade-up stagger-2"><div class="cert-badge"></div><div class="cert-info"><div class="cert-name">Microsoft Azure Fundamentals</div><div class="cert-meta"><span class="cert-status-progress">◌ In Progress</span></div></div></div>
